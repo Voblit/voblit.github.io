@@ -1,328 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Voblit's BIOS</title>
-    <link href="https://fonts.cdnfonts.com/css/perfect-dos-vga-437" rel="stylesheet">
+    <title>POPULATION DIGITAL CABLE MEDIA - HOME</title>
     <style>
-        :root {
-            --bios-blue: #0000aa;
-            --bios-light-grey: #bbbbbb;
-            --bios-dark-grey: #111111;
-            --bios-text-black: #000000;
-            --bios-text-white: #ffffff;
-            --bios-cyan: #55ffff;
-            --flicker-speed: 0.1s;
-            --scanline-opacity: 0.15;
+        body {
+            background-color: #c0c0c0; /* Classic Windows 95 Grey */
+            background-image: url('https://www.transparenttextures.com/patterns/60-lines.png');
+            font-family: "Times New Roman", Times, serif;
+            color: #000;
+            padding: 20px;
         }
-
-        @keyframes flicker {
-            0% { opacity: 0.992; }
-            5% { opacity: 0.985; }
-            10% { opacity: 0.999; }
-            15% { opacity: 0.98; }
-            100% { opacity: 1; }
+        .container {
+            width: 80%;
+            margin: auto;
+            border: 3px outset #eee; /* Makes it look like a 90s button */
+            background: #fff;
+            padding: 10px;
         }
-
-        body, html {
-            margin: 0; padding: 0;
-            background-color: #020202; 
-            font-family: 'Perfect DOS VGA 437', monospace;
-            height: 100vh;
+        h1 {
+            background: darkblue;
+            color: white;
+            padding: 5px;
+            font-size: 24px;
+            text-align: center;
+        }
+        .nav {
+            border: 2px inset #ccc;
+            padding: 5px;
+            margin: 10px 0;
+            background: #e0e0e0;
+        }
+        a {
+            color: blue;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        .status-box {
+            border: 1px dashed red;
+            padding: 10px;
+            background: #ffffcc;
+        }
+        .gif-container {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            text-transform: uppercase;
+            justify-content: space-around;
+            padding: 20px;
         }
-
-        .monitor-screen {
-            width: 100vw;
-            height: 75vw;
-            max-width: 1024px;
-            max-height: 768px;
-            background-color: var(--bios-dark-grey);
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            box-shadow: 0 0 60px rgba(0,0,150,0.2), inset 0 0 100px #000;
-            border: 8px solid #222; 
-            border-radius: 10px;
-            animation: flicker var(--flicker-speed) infinite;
-        }
-
-        #scanlines {
-            content: " ";
-            display: block;
-            position: absolute;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, var(--scanline-opacity)) 50%), 
-                        radial-gradient(rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.4) 100%);
-            z-index: 100;
-            background-size: 100% 3px, 100% 100%;
-            pointer-events: none;
-        }
-
-        #brick-overlay {
-    display: none;
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: #000000; /* Pure Black */
-    color: #ffffff;      /* Pure White Text */
-    z-index: 1000;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-}
-
-        /* --- Easter Egg Layer --- */
-        #easter-egg-layer {
-            display: none;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 50;
-        }
-
-        .bounce-item { position: absolute; white-space: nowrap; will-change: transform; }
-        .egg-vro { color: #ff00ff; font-size: 14px; text-shadow: 2px 2px #000; }
-        .egg-brocli { color: #00ff00; text-shadow: 1px 0 #f00, -1px 0 #0ff; }
-        .egg-dangan { color: #ff66aa; font-style: italic; font-weight: bold; }
-        .doge-container { font-family: 'Comic Sans MS', cursive; text-transform: none; font-weight: bold; font-size: 24px; }
-        .doge-black { color: black; position: absolute; top: 0; left: 0; }
-        .doge-red { color: red; position: absolute; top: -3px; left: 3px; z-index: 1; }
-        .l3-tank { color: #4b5320; white-space: pre; font-size: 8px; line-height: 1; filter: drop-shadow(2px 2px #000); }
-
-        /* --- UI Styling --- */
-        .title-header { background-color: #000; color: #fff; text-align: center; padding: 5px; font-size: 14px; letter-spacing: 1px; }
-        .nav-tabs { background-color: var(--bios-blue); display: flex; padding: 0 5px; border-bottom: 1px solid #000; z-index: 5; flex-wrap: wrap; }
-        .tab { padding: 6px 8px; color: var(--bios-text-white); text-shadow: 1px 1px #000; font-size: 11px; cursor: pointer; border: none; background: none; font-family: inherit; }
-        .tab.active { background-color: var(--bios-light-grey); color: var(--bios-blue); text-shadow: none; }
-        
-        .main-container { flex: 1; background-color: var(--bios-light-grey); display: flex; border-bottom: 2px solid #000; overflow: hidden; }
-        .content-area { flex: 3; padding: 20px 30px; color: var(--bios-blue); overflow-y: auto; }
-        .page-content { display: none; }
-        .page-content.active { display: block; }
-        .section-title { border-bottom: 1px solid var(--bios-blue); margin-bottom: 10px; padding-bottom: 5px; font-weight: bold; }
-        
-        .info-row { display: flex; justify-content: space-between; width: 100%; max-width: 500px; margin-bottom: 6px; color: #000; cursor: pointer; padding: 2px 5px; }
-        .info-row:hover { background-color: #fff; outline: 1px solid var(--bios-blue); }
-        .label { color: var(--bios-blue); }
-        .value { font-weight: bold; }
-
-        .help-sidebar { flex: 1.2; border-left: 2px solid #000; color: #000; background: #a5a5a5; }
-        .help-header { text-align: center; padding: 10px; border-bottom: 1px solid #000; font-weight: bold; }
-        .help-text-block { display: none; padding: 15px; font-size: 13px; line-height: 1.4; }
-        .help-text-block.active { display: block; }
-        .bottom-bar { background-color: var(--bios-blue); color: var(--bios-cyan); padding: 8px 20px; display: flex; justify-content: space-between; font-size: 12px; z-index: 5; }
-        a { color: inherit; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <div class="monitor-screen" id="monitor">
-        <div id="scanlines"></div>
+<div class="container">
+    <marquee scrollamount="10"><h1>!!! WELCOME TO THE POPULATION DIGITAL CABLE MEDIA HEADEND !!!</h1></marquee>
 
-        <div id="brick-overlay">
-            <p>Fatal hardware error: Extreme Overclocking detected.</p>
-            <p style="margin-top: 50px; background: #fff; color: #aa0000; padding: 10px;">PRESS F5 TO REFLASH CHIP (RELOAD)</p>
-        </div>
-
-        <div id="easter-egg-layer">
-            <div class="bounce-item egg-vro">This chatroom is not human vro 🫩🚬✌️🥀</div>
-            <div class="bounce-item egg-brocli">brocli dog</div>
-            <div class="bounce-item egg-dangan">DANGANRONPA REFERENCE?</div>
-            <div class="bounce-item doge-container">
-                <span class="doge-black">buy sopurb dogecoin</span>
-                <span class="doge-red">buy sopurb dogecoin</span>
-            </div>
-            <div class="bounce-item l3-tank">
-      ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡠⣦⠉⠉⠉⠉⠈⠙⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠤⠤⠤⢴⣶⡶⡢⢋⢤⠜⠔⠀⠀⠊⠂⠂⢶⣒⡒⠒⡖⠶⠛⢳⣶⡂
-⠠⣶⣦⣦⣶⣶⣂⣀⣠⣊⣽⣁⢠⣸⣀⣀⣀⡀⢀⠀⣺⣿⣟⣦⢿⣧⣤⣼⣤⡔
-⣾⠟⢉⠉⢿⡟⠉⠛⠛⠛⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⣤⡶⣬⣽⣟⡁
-⢿⣦⣉⣠⡿⠓⠛⠺⢷⡟⠾⣧⠤⠴⠤⠤⠤⠭⣭⢿⢫⡏⠉⣿⡟⡿⣿⡞⣿⣷
-⠀⠉⠉⠛⠿⣯⣵⣿⣋⣃⣳⣿⣦⣴⣆⣰⣦⣴⣿⣞⣙⣙⣿⣿⣽⣧⡿⠿⠟⠃
-            </div>
-        </div>
-
-        <div class="title-header">BIOS Utility Setup</div>
-
-        <nav class="nav-tabs">
-            <button class="tab active" onclick="showPage('main')">Main</button>
-            <button class="tab" onclick="showPage('advanced')">Advanced</button>
-            <button class="tab" onclick="showPage('projects')">Projects</button>
-            <button class="tab" onclick="showPage('device')">Hardware</button>
-            <button class="tab" onclick="showPage('security')">Chaos</button>
-            <button class="tab" onclick="showPage('exit')">Exit</button>
-        </nav>
-
-        <div class="main-container">
-            <div class="content-area">
-                <div id="page-main" class="page-content active">
-                    <div class="section-title">System Overview</div>
-                    <div class="info-row"><span class="label">BIOS Revision</span> <span>1.2169.42.37</span></div>
-                    <div class="info-row"><span class="label">CPU Type</span> <span id="disp-cpu">Intel (R) Pentium III</span></div>
-                    <div class="info-row"><span class="label">System Memory</span> <span id="disp-mem">enough KB</span></div>
-                    <div class="info-row"><span class="label">Internal Clock</span> <span id="disp-clock">500 MHz</span></div>
-                    <p>If you are reading this, Hi! this is the homepage of ME, Voblit...</p>
-                        <p>you may know me also as National Reserves (if you know you know :P)</p>
-                    <h3>check the Projects tab for cool stuff ive made!</h3>
-                </div>
-
-                <div id="page-advanced" class="page-content">
-                    <div class="section-title">Visual Settings</div>
-                    <div class="info-row" onclick="toggleScanlines()"><span class="label">CRT Scanlines</span> <span id="val-scan" class="value">[ON]</span></div>
-                    <div class="info-row" onclick="cycleFlicker()"><span class="label">Flicker Rate</span> <span id="val-flick" class="value">[100ms]</span></div>
-                    <div class="info-row" onclick="toggleTheme()"><span class="label">UI Color Scheme</span> <span id="val-theme" class="value">[BIOS BLUE]</span></div>
-                </div>
-
-                <div id="page-projects" class="page-content">
-                    <div class="section-title">Developer Hub</div>
-                    <p style="color: #000;">> <a href="https://voblit.github.io/I-Like-FlowersOS" target="_blank">My OWN OS made using C# through COSMOS, I~Like~FlowersOS</a></p>
-                    <p style="color: #000;">> <a href="https://www.cemetech.net/users/Voblit" target="_blank">Cemetech Profile with projects like pycat!1</a></p>
-                    <p style="color: #000;">> <a href="https://github.com/Voblit" target="_blank">Official GitHub</a></p>
-                </div>
-
-                <div id="page-device" class="page-content">
-                    <div class="section-title">Performance Tuning</div>
-                    <div class="info-row" onclick="overclock()"><span class="label">CPU Overclock</span> <span id="val-oc" class="value" style="color:red;">[DISABLED]</span></div>
-                    <div class="info-row" onclick="addMemory()"><span class="label">Memory Expansion</span> <span id="val-mem" class="value">[Standard]</span></div>
-                    <div class="info-row"><span class="label">SATA Port 0</span> <span>[HDD-L3-TANK]</span></div>
-                </div>
-
-                <div id="page-security" class="page-content">
-                    <div class="section-title">Experimental Layer</div>
-                    <div class="info-row" onclick="toggleEggs()"><span class="label">Visual Chaos</span> <span id="egg-status" class="value">[Disabled]</span></div>
-                    <p style="font-size: 10px; color: #444; margin-top: 20px;">Enabling this injects unverified string entities into the display buffer.</p>
-                </div>
-
-                <div id="page-exit" class="page-content">
-                    <div class="section-title">Exit Options</div>
-                    <p style="color: #000; cursor: pointer;" onclick="location.reload()">> Save and Reboot</p>
-                    <p style="color: #000; cursor: pointer;" onclick="location.reload()">> Load Defaults (Clear Brick)</p>
-                </div>
-            </div>
-
-            <div class="help-sidebar">
-                <div class="help-header">Help Message</div>
-                <div id="help-main" class="help-text-block active">Basic hardware and BIOS version information.</div>
-                <div id="help-advanced" class="help-text-block">Modify the CRT rendering engine parameters.</div>
-                <div id="help-projects" class="help-text-block">Access external project links for FlowersOS and Cemetech.</div>
-                <div id="help-device" class="help-text-block">WARNING: Overclocking may cause system instability and permanent chip failure (Bricking).</div>
-                <div id="help-security" class="help-text-block">Toggle floating text entities... DONT DO IT!!!1</div>
-                <div id="help-exit" class="help-text-block">Exit and commit to CMOS.</div>
-            </div>
-        </div>
-
-        <div class="bottom-bar">
-            <div><span class="status-local">LOCAL</span><span class="key-hint">F1 Help</span><span class="key-hint">F10 Save</span></div>
-            <div><span>G*I*V*E M e Y o u r M o n ey</span></div>
-        </div>
+    <div class="nav">
+        <a href="/weatherscan">Launch WeatherScan (704)</a> | 
+        <a href="https://github.com/Voblit">My Code</a> | 
+        <a href="#">FlowersOS</a> | 
+        <a href="#">Chat (GAS)</a>
     </div>
 
-    <script>
-        let eggsEnabled = false;
-        let ocLevel = 0;
-        let flickerLevel = 1;
-        const items = [];
-        const monitor = document.getElementById('monitor');
+    <div class="status-box">
+        <b>SYSTEM STATUS:</b> <span style="color: green;">ONLINE (I THINK)</span><br>
+        <b>CURRENT PROJECT:</b> REWRITING THE WEATHERSCAN BECAUSE THE OLD ONE WAS CRAP<br>
+        <b>LAST UPDATED:</b> 10-05-2024 (I'M LAZY)
+    </div>
 
-        function overclock() {
-            ocLevel++;
-            const ocVal = document.getElementById('val-oc');
-            const clockDisp = document.getElementById('disp-clock');
-            if (ocLevel === 1) {
-                ocVal.innerText = "[STABLE]";
-                clockDisp.innerText = "800 MHz";
-            } else if (ocLevel === 2) {
-                ocVal.innerText = "[UNSTABLE]";
-                clockDisp.innerText = "1.2 GHz";
-                document.documentElement.style.setProperty('--flicker-speed', '0.03s');
-            } else {
-                document.getElementById('brick-overlay').style.display = 'flex';
-            }
-        }
+    <h2>About This Site:</h2>
+    <p>This is the official landing page for Population Digital Cable Media. I moved it to Vercel because Google Apps Script was being a convulsive mess and I hate my life. If things are broken, don't tell me.</p>
 
-        function toggleScanlines() {
-            const scan = document.getElementById('scanlines');
-            const val = document.getElementById('val-scan');
-            scan.style.display = (scan.style.display === "none") ? "block" : "none";
-            val.innerText = (scan.style.display === "none") ? "[OFF]" : "[ON]";
-        }
+    <hr>
 
-        function cycleFlicker() {
-            flickerLevel = (flickerLevel % 4) + 1;
-            const speed = (0.2 / flickerLevel).toFixed(2) + "s";
-            document.documentElement.style.setProperty('--flicker-speed', speed);
-            document.getElementById('val-flick').innerText = `[${speed}]`;
-        }
+    <center>
+        <p>This site is optimized for Netscape Navigator 4.0 at 800x600 resolution.</p>
+        <img src="https://web.archive.org/web/20091027005003im_/http://geocities.com/Tokyo/6618/undercon.gif" alt="Under Construction">
+        <br>
+        <p><i>Proprietary Technology of The Population Digital Cable Media</i></p>
+    </center>
 
-        function toggleTheme() {
-            const val = document.getElementById('val-theme');
-            if (val.innerText === "[BIOS BLUE]") {
-                document.documentElement.style.setProperty('--bios-blue', '#111111');
-                val.innerText = "[DEEP BLACK]";
-            } else {
-                document.documentElement.style.setProperty('--bios-blue', '#0000aa');
-                val.innerText = "[BIOS BLUE]";
-            }
-        }
+    <div class="gif-container">
+        <div style="width:50px; height:50px; background:blue; border-radius:50%;"></div>
+        <div style="width:50px; height:50px; background:yellow; border-radius:50%;"></div>
+        <div style="width:50px; height:50px; background:red; border-radius:50%;"></div>
+    </div>
+</div>
 
-        function addMemory() {
-            document.getElementById('val-mem').innerText = "[MAXED OUT]";
-            document.getElementById('disp-mem').innerText = "128,000 KB";
-        }
-
-        function showPage(pageId) {
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.help-text-block').forEach(h => h.classList.remove('active'));
-            
-            const tabs = document.querySelectorAll('.tab');
-            tabs.forEach(tab => { if(tab.getAttribute('onclick').includes("'" + pageId + "'")) tab.classList.add('active'); });
-            
-            document.getElementById('page-' + pageId).classList.add('active');
-            document.getElementById('help-' + pageId).classList.add('active');
-        }
-
-        function initBounce() {
-            const elements = document.querySelectorAll('.bounce-item');
-            elements.forEach(el => {
-                items.push({ el, x: Math.random()*300, y: Math.random()*300, dx: (Math.random()-0.5)*5, dy: (Math.random()-0.5)*5 });
-            });
-        }
-
-        function updateBounce() {
-            if (!eggsEnabled) return;
-            const mRect = monitor.getBoundingClientRect();
-            items.forEach(item => {
-                const rect = item.el.getBoundingClientRect();
-                let localX = rect.left - mRect.left;
-                let localY = rect.top - mRect.top;
-                if (localX + rect.width >= monitor.clientWidth || localX <= 0) item.dx *= -1;
-                if (localY + rect.height >= monitor.clientHeight || localY <= 0) item.dy *= -1;
-                item.x += item.dx; item.y += item.dy;
-                item.el.style.transform = `translate(${item.x}px, ${item.y}px)`;
-            });
-            requestAnimationFrame(updateBounce);
-        }
-
-        function toggleEggs() {
-            eggsEnabled = !eggsEnabled;
-            const layer = document.getElementById('easter-egg-layer');
-            const status = document.getElementById('egg-status');
-            layer.style.display = eggsEnabled ? 'block' : 'none';
-            status.innerText = eggsEnabled ? '[Enabled]' : '[Disabled]';
-            status.style.color = eggsEnabled ? '#aa0000' : '#000';
-            if (eggsEnabled) updateBounce();
-        }
-
-        window.onload = initBounce;
-    </script>
 </body>
 </html>
