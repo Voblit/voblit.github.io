@@ -138,35 +138,24 @@
     </div>
     <h4>You are visitor number: <img src="counter.gif"></h4>
 </div>
-    <img id="celeste-sprite" src="" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:9999; max-width: 80vw; pointer-events: none; image-rendering: pixelated;">
+<div id="celeste-wrapper" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999;"><img id="celeste-sprite" src="" style="max-width:80vw;pointer-events:none;image-rendering:pixelated;"></div>
 <audio id="madness-audio" src="Celes_crashout.mp3"></audio>
-<footer>
-    <h6 onclick="crashout()" style="cursor: pointer; user-select: none;">
-        <small id="madness-text">because... because because because Because Because BECAUSE!!!</small>
-    </h6> 
-</footer>
-</body>
-
-
+<footer><h6 onclick="crashout()" style="cursor:pointer;user-select:none;"><small id="madness-text">because... because because because Because Because BECAUSE!!!</small></h6></footer>
 <style>
 @keyframes s{0%{transform:translate(4px,4px)}50%{transform:translate(-4px,-4px)}100%{transform:translate(4px,4px)}}
 .shaking{animation:s .1s infinite}
 </style>
-
 <script>
 function crashout(){
   const a=document.getElementById('madness-audio'),w=document.getElementById('celeste-wrapper'),s=document.getElementById('celeste-sprite'),t=document.getElementById('madness-text');
   const m=[[0,'C1.webp'],[1,'C2.webp'],[2,'C3.webp'],[3,'C4.webp'],[4,'C5.webp']];
-  a.currentTime=0;a.play();w.style.display="block";t.style.color="red";t.style.fontWeight="bold";
+  a.currentTime=0;a.play();w.style.display="block";s.classList.remove('shaking');t.style.color="red";t.style.fontWeight="bold";
   const i=setInterval(()=>{
     let c=m.filter(x=>a.currentTime>=x[0]).pop();
     if(c)s.src=c[1];
     if(a.currentTime>=4)s.classList.add('shaking');
   },50);
-  a.onended=()=>{
-    clearInterval(i);w.style.display="none";s.classList.remove('shaking');
-    t.style.color="";t.style.fontWeight="";
-  };
+  a.onended=()=>{clearInterval(i);w.style.display="none";s.classList.remove('shaking');t.style.color="";t.style.fontWeight=""};
 }
 </script>
-</html>
+</body></html>>
