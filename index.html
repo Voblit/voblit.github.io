@@ -163,6 +163,6 @@ fetch('https://api.github.com/repos/Voblit/voblit.github.io/commits/main')
   .then(r=>r.json()).then(d=>{
     const date=new Date(d.commit.author.date);
     document.getElementById('commit-date').innerText=date.toLocaleDateString()+' '+date.toLocaleTimeString();
-  }).catch(e=>document.getElementById('commit-date').innerText='Check GitHub');
+  }).catch(e=>document.getElementById('commit-date').innerText='api no wokie :<');
     </script>
 </body></html>
