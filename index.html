@@ -146,24 +146,26 @@
     </h6> 
 </footer>
 </body>
+
+
 <style>
-@keyframes s{0%{transform:translate(2px,2px)}50%{transform:translate(-2px,-2px)}100%{transform:translate(2px,2px)}}
-#celeste-sprite{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999;max-width:80vw;pointer-events:none;image-rendering:pixelated}
+@keyframes s{0%{transform:translate(4px,4px)}50%{transform:translate(-4px,-4px)}100%{transform:translate(4px,4px)}}
 .shaking{animation:s .1s infinite}
 </style>
+
 <script>
 function crashout(){
-  const a=document.getElementById('madness-audio'),s=document.getElementById('celeste-sprite'),t=document.getElementById('madness-text');
+  const a=document.getElementById('madness-audio'),w=document.getElementById('celeste-wrapper'),s=document.getElementById('celeste-sprite'),t=document.getElementById('madness-text');
   const m=[[0,'C1.webp'],[1,'C2.webp'],[2,'C3.webp'],[3,'C4.webp'],[4,'C5.webp']];
-  a.currentTime=0;a.play();s.style.display="block";t.style.color="red";t.style.fontWeight="bold";
+  a.currentTime=0;a.play();w.style.display="block";t.style.color="red";t.style.fontWeight="bold";
   const i=setInterval(()=>{
     let c=m.filter(x=>a.currentTime>=x[0]).pop();
     if(c)s.src=c[1];
-    if(a.currentTime>=4)document.body.classList.add('shaking');
+    if(a.currentTime>=4)s.classList.add('shaking');
   },50);
   a.onended=()=>{
-    clearInterval(i);s.style.display="none";t.style.color="";t.style.fontWeight="";
-    document.body.classList.remove('shaking');a.pause();
+    clearInterval(i);w.style.display="none";s.classList.remove('shaking');
+    t.style.color="";t.style.fontWeight="";
   };
 }
 </script>
