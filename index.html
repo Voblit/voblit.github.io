@@ -85,7 +85,7 @@
     <div class="status-box">
         <b>Status of I:</b> <span style="color: green;">Probably online</span><br>
         <b>Currently working on:</b> weatherscan, I~Like~FlowersOS, private GAS extensions (no i am not doing crap for you)<br>
-        <b>LAST UPDATED:</b> i dunno man check the github commits
+        <b>Site was last updated on:</b> <span id="commit-date">i dunno man check the github commits</span>
     </div>
     <h4>welcome dreary traveler, you must've went through a lot to get here...</h4>
     <hr>
@@ -158,4 +158,11 @@ function crashout(){
   a.onended=()=>{clearInterval(i);w.style.display="none";s.classList.remove('shaking');t.style.color="";t.style.fontWeight=""};
 }
 </script>
-</body></html>>
+    <script>
+fetch('https://api.github.com/repos/Voblit/voblit.github.io/commits/main')
+  .then(r=>r.json()).then(d=>{
+    const date=new Date(d.commit.author.date);
+    document.getElementById('commit-date').innerText=date.toLocaleDateString()+' '+date.toLocaleTimeString();
+  }).catch(e=>document.getElementById('commit-date').innerText='Check GitHub');
+    </script>
+</body></html>
