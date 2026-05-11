@@ -153,7 +153,7 @@
 <script>
 function crashout(){
   const a=document.getElementById('madness-audio'),s=document.getElementById('celeste-sprite'),t=document.getElementById('madness-text');
-  const m=[[0,'c1.png'],[1.5,'c2.png'],[3,'c3.png'],[4.2,'c4.png']];
+  const m=[[0,'C1.webp'],[1.5,'C2.webp'],[3,'C3.webp'],[4.2,'C4.webp']];
   a.currentTime=0;a.play();s.style.display="block";t.style.color="red";t.style.fontWeight="bold";
   const i=setInterval(()=>{
     let c=m.filter(x=>a.currentTime>=x[0]).pop();
