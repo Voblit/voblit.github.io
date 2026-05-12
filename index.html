@@ -159,11 +159,14 @@ function crashout(){
   a.onended=()=>{clearInterval(i);w.style.display="none";s.classList.remove('shaking');t.style.color="";t.style.fontWeight=""};
 }
 </script>
-    <script>
+<script>
+const el=document.getElementById('commit-date'),fmt=d=>{const dt=new Date(d);el.innerText=dt.toLocaleDateString()+' '+dt.toLocaleTimeString()};
 fetch('https://api.github.com/repos/Voblit/voblit.github.io/commits/main')
-  .then(r=>r.json()).then(d=>{
-    const date=new Date(d.commit.author.date);
-    document.getElementById('commit-date').innerText=date.toLocaleDateString()+' '+date.toLocaleTimeString();
-  }).catch(e=>document.getElementById('commit-date').innerText='api no wokie :<');
-    </script>
+  .then(r=>r.json()).then(d=>fmt(d.commit.author.date))
+  .catch(()=>{
+    fetch(window.location.href,{method:'HEAD'})
+      .then(r=>fmt(r.headers.get('date')))
+      .catch(()=>el.innerText='api no workie :<');
+  });
+</script>
 </body></html>
