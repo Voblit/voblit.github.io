@@ -48,14 +48,30 @@
         }
         .nav {
             border: 2px inset #ccc;
-            padding: 5px;
+            padding: 4px;
             margin: 10px 0;
-            background: #e0e0e0;
+            background: #d4d0c8;
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
         }
-        a {
-            color: blue;
-            font-weight: bold;
-            margin-right: 15px;
+        .nav a {
+            color: #000;
+            text-decoration: none;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 13px;
+            font-weight: normal;
+            background: #d4d0c8;
+            border: 2px outset #fff;
+            padding: 4px 10px;
+            margin-right: 0;
+            display: inline-block;
+            user-select: none;
+        }
+        .nav a:active {
+            border: 2px inset #fff;
+            padding: 5px 9px 3px 11px;
+            background: #e4e0d8;
         }
         .status-box {
             border: 1px dashed red;
@@ -67,12 +83,13 @@
            font-family: Arial, Helvetica, sans-serif;
            text-align: center; 
         }
+        /* it was late, and I was tired, please dont hurt my family */
 @media (max-width: 768px) {
 body { padding: 10px; }
 .container { width: 95%; padding: 5px; box-sizing: border-box; }
 .top-left-fan { position: static; display: block; margin: 0 auto 10px auto; width: 120px; }
-.nav { display: flex; flex-direction: column; gap: 8px; text-align: center; }
-.nav a { margin-right: 0; padding: 4px 0; }
+.nav { flex-direction: column; gap: 4px; }
+.nav a { text-align: center; }
 .gif-container { flex-wrap: wrap; }
 img, div, ul { max-width: 100%; box-sizing: border-box; }
 }
@@ -85,11 +102,11 @@ img, div, ul { max-width: 100%; box-sizing: border-box; }
    <h1>Voblit's Internet House</h1>
 
     <div class="nav">
-        <a href="https://population-weatherscan.vercel.app">Open The Population Weatherscan</a> | 
-        <a href="https://github.com/Voblit">My Code</a> | 
-        <a href="https://i-like-flowersos.vercel.app">FlowersOS</a> | 
-        <a href="#" onclick="this.href = window.location.hostname.includes('vercel.app') ? 'https://whatpwa.vercel.app' : '/whatpwa'">What is a PWA?</a> |
-        <a href="https://www.cemetech.net/users/Voblit">My Cemetech profile (i luv calculator)</a> |
+        <a href="https://population-weatherscan.vercel.app">Open The Population Weatherscan</a>
+        <a href="https://github.com/Voblit">My Code</a>
+        <a href="https://i-like-flowersos.vercel.app">FlowersOS</a>
+        <a href="#" onclick="this.href = window.location.hostname.includes('vercel.app') ? 'https://whatpwa.vercel.app' : '/whatpwa'">What is a PWA?</a>
+        <a href="https://www.cemetech.net/users/Voblit">My Cemetech profile (i luv calculator)</a>
         <a href="https://www.simcompanies.com/company/0/National-Reserves/"> SimCompanies game profile </a>
     </div>
 
@@ -178,6 +195,8 @@ fetch('https://api.github.com/repos/Voblit/voblit.github.io/commits/main')
       .then(r=>fmt(r.headers.get('date')))
       .catch(()=>el.innerText='api no workie :<');
   });
+
+    //if you see this, Please, please... enjoy the web <3
 </script>
     
     </body></html>
