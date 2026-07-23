@@ -1,214 +1,410 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voblit's Home</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <style>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Voblit - Home</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            color: inherit;
+            font-size: 100%;
+            font-family: inherit;
+            box-sizing: border-box;
+        }
+        html, body {
+            height: 100%;
+        }
+        html {
+            background: #c0c0c0;
+        }
         body {
-            background-color: #c0c0c0; /* Classic Windows 95 Grey */
-            background-image: url('https://www.transparenttextures.com/patterns/60-lines.png');
-            font-family: "Times New Roman", Times, serif;
+            font-family: arial, sans-serif;
+            font-size: 12px;
             color: #000;
-            padding: 20px;
         }
-        /*the formatting here is where my mental issues began*/
-        .top-left-fan {
-    position: fixed;
-    top: 5px;
-    left: 5px;
-    z-index: 1000;
-    width: 150px; 
-    height: auto;
+        a {
+            color: #000080;
+            text-decoration: none;
         }
-        .container {
-            width: 80%;
-            margin: auto;
-            border: 3px outset #eee; 
-            background: #fff;
-            padding: 10px;
+        a:hover {
+            color: #ff0000;
+            text-decoration: underline;
         }
-        .netscape_icon img {
-            width: auto;
-            height: 80px;
+        img {
+            border: none;
         }
-        /*i severly apologize web devs for this shitty formatting, i did this on my phone :[ */
-.gif-container {
-    display: flex;
-    justify-content: center; 
-    gap: 5px;                
-    padding: 10px;           
-}
-        h1 {
-            background: darkblue;
-            color: white;
-            padding: 5px;
-            font-size: 24px;
+        h1 { font-size: 140%; }
+        h2 { font-size: 130%; }
+        h3 { font-size: 120%; }
+
+        #main {
+            width: 915px;
+            margin: 0 auto;
+            padding: 1em 0;
+        }
+        /* Text-Based Header Banner */
+        #header {
             text-align: center;
+            padding: 1.5em 1em;
+            background: #000080;
+            color: #ffffff;
+            border-bottom: 2px solid #000040;
         }
-        .nav {
-            border: 2px inset #ccc;
-            padding: 4px;
-            margin: 10px 0;
+        #header h1.banner-title {
+            font-size: 220%;
+            font-family: "Trebuchet MS", Arial, sans-serif;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px #000000;
+            margin-bottom: 4px;
+        }
+        #header p.banner-subtitle {
+            font-size: 11px;
+            color: #d4d0c8;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        #menus {
             background: #d4d0c8;
+            border-top: 1px solid #999;
+            border-bottom: 1px solid #999;
+            text-align: center;
+            line-height: 19px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+        #menus a {
+            color: black;
+            padding: 1px 6px;
+            display: inline-block;
+        }
+        #menus a:hover {
+            color: #fff;
+            background: #000080;
+            text-decoration: none;
+        }
+        #content {
+            background: #e4e0d8;
+            padding: 8px;
+            border: 1px solid #999;
+        }
+        #left_sidebar {
+            width: 155px;
+            float: left;
+        }
+        #page {
+            width: 565px;
+            float: left;
+            margin: 0 10px;
+            padding-bottom: 10px;
+        }
+        #right_sidebar {
+            width: 155px;
+            float: right;
+        }
+
+        /* MaxCoderz Captioned Boxes */
+        div.captioned-box,
+        div.small-captioned-box {
+            margin-top: 12px;
+            padding: 5px 7px;
+        }
+        div.captioned-box:first-child,
+        div.small-captioned-box:first-child {
+            margin-top: 0;
+        }
+        div.captioned-box h2,
+        div.small-captioned-box h2 {
+            margin: -5px -7px 10px -7px;
+            background: #d4d0c8;
+            padding: 5px 7px;
+            text-align: right;
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+        div.captioned-box {
+            background: white;
+            border-bottom: 15px solid #d4d0c8;
+        }
+        div.small-captioned-box {
+            background: #ffffff;
+            font-size: 10px;
+        }
+        div.captioned-box h2 + *,
+        div.small-captioned-box h2 + * {
+            margin-top: 0;
+        }
+
+        ul.post-summary {
+            list-style: none;
+        }
+        ul.post-summary li {
+            margin-bottom: 6px;
+            border-bottom: 1px dashed #ccc;
+            padding-bottom: 4px;
+        }
+        ul.post-summary li:last-child {
+            border-bottom: none;
+        }
+        p.subtitle {
+            font-size: smaller;
+            color: #333;
+            margin-top: 0.5em;
+        }
+        p.comments {
+            text-align: right;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: bold;
+        }
+        blockquote {
+            margin-top: 1em;
+            margin-bottom: 1em;
+            padding: 6px 10px;
+            background: #fdfdfd;
+            border-left: 3px solid #000080;
+        }
+        hr {
+            border: none;
+            height: 1px;
+            background: #ccc;
+            margin: 15px 0;
+        }
+
+        /* Floating Ceiling Fan */
+        .top-left-fan {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+            width: 80px;
+        }
+
+        /* Search input styling */
+        .search-field {
+            width: 100%;
+            padding: 2px;
+            border: 1px solid #888;
+            font-size: 10px;
+            margin-bottom: 4px;
+        }
+        .search-btn {
+            width: 100%;
+            background: #d4d0c8;
+            border: 1px solid #888;
+            font-size: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 2px;
+        }
+
+        .gif-container {
             display: flex;
+            justify-content: center;
             gap: 4px;
             flex-wrap: wrap;
+            margin-top: 15px;
         }
-        .nav a {
-            color: #000;
-            text-decoration: none;
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 13px;
-            font-weight: normal;
-            background: #d4d0c8;
-            border: 2px outset #fff;
-            padding: 4px 10px;
-            margin-right: 0;
-            display: inline-block;
-            user-select: none;
-        }
-        .nav a:active {
-            border: 2px inset #fff;
-            padding: 5px 9px 3px 11px;
-            background: #e4e0d8;
-        }
-        .status-box {
-            border: 1px dashed red;
-            padding: 10px;
-            background: #ffffcc;
-        }
-    
-        footer {
-           font-family: Arial, Helvetica, sans-serif;
-           text-align: center; 
-        }
-        /* it was late, and I was tired, please dont hurt my family */
-@media (max-width: 768px) {
-body { padding: 10px; }
-.container { width: 95%; padding: 5px; box-sizing: border-box; }
-.top-left-fan { position: static; display: block; margin: 0 auto 10px auto; width: 120px; }
-.nav { flex-direction: column; gap: 4px; }
-.nav a { text-align: center; }
-.gif-container { flex-wrap: wrap; }
-img, div, ul { max-width: 100%; box-sizing: border-box; }
-}
+
+        @keyframes s { 0%{transform:translate(3px,3px)} 50%{transform:translate(-3px,-3px)} 100%{transform:translate(3px,3px)} }
+        .shaking { animation: s .15s infinite; }
     </style>
 </head>
 <body>
-    <img src="ceilingfan.gif" class="top-left-fan" alt="staying cool">
 
-<div class="container">
-   <h1>Voblit's Internet House</h1>
+    <img src="ceilingfan.gif" class="top-left-fan" alt="staying cool" />
 
-    <div class="nav">
-        <a href="https://population-weatherscan.vercel.app">Open The Population Weatherscan</a>
-        <a href="https://github.com/Voblit">My Code</a>
-        <a href="https://i-like-flowersos.vercel.app">FlowersOS</a>
-        <a href="#" onclick="this.href = window.location.hostname.includes('vercel.app') ? 'https://whatpwa.vercel.app' : '/whatpwa'">What is a PWA?</a>
-        <a href="https://www.cemetech.net/users/Voblit">My Cemetech profile (i luv calculator)</a>
-        <a href="https://www.simcompanies.com/company/0/National-Reserves/"> SimCompanies game profile </a>
-        <a href="https://wikisniff.vercel.app">Wikisniff</a>
-    </div>
-
-    <div class="status-box">
-        <b>Status of I:</b> <span style="color: green;">Probably online</span><br>
-        <b>Currently working on:</b> weatherscan, I~Like~FlowersOS, private GAS extensions (no i am not doing crap for you)<br>
-        <b>Site was last updated on:</b> <span id="commit-date">i dunno man check the github commits</span>
-    </div>
-    <h4>welcome dreary traveler, you must've went through a lot to get here...</h4>
-    <hr>
-    <h2>About This Site:</h2>
-    <p>This is the official landing page for Voblit. I moved it to Vercel/Github because Google Apps Script was being a convulsive mess and I hate my life. If things are broken, don't tell me.</p>
-    <h2>About Me:</h2>
-    <p>I am your run-of-the-mill dev, specializing in C#. I have worked on many projects before, as my directory above shows, and am actively making new stuff up to continue creating. Some of my favorite things are programming/engineering for TI series calculators -specifically the CE-, and web development/internet infastructure security. My favorite animals are Worms and Bears, and I like flowers!</p>
-    <hr>
-
-  
-
-    <div style="background: #f0f0f0; border-left: 5px solid darkblue; padding: 15px; margin: 20px 0; border-top: 1px solid #ccc; border-right: 1px solid #ccc; border-bottom: 1px solid #ccc;">
-    <h2 style="margin-top: 0;">Wanna talk to me?</h2>
-    <p>message me here, just PLEASE don't spam me:
-       <a href="mailto:alex-@inbox.lv">voblit@inbox.lv</a></p>
-    <h5 style="margin-bottom: 0;"><i>just do not expect me to be fast okie?</i></h5>
-    </div>
-    
-    <div style="border: 2px double darkblue; padding: 15px; margin: 20px 0; background: #f9f9f9; text-align: center;">
-    <h3 style="margin-top: 0; color: darkblue;">Offical Canon Voblits</h3>
-    <p>To avoid confusion, clone accounts, or deep-fried internet impersonators, you can locate all verified profiles of me, myself, and I using the methods below.</p>
-    
-    <div style="margin: 20px 0;">
-        <img src="qr.jpeg" alt="Voblit Matrix QR Code" style="max-width: 160px; height: auto; border: 3px inset #d4d0c8; padding: 6px; background: #fff; image-rendering: pixelated;">
-    </div>
-    
-    <p style="font-family: Arial, Helvetica, sans-serif; font-size: 14px;">
-        <b>Links aglore to all my accounts</b><br>
-        <a href="https://unit.link/voblit" style="color: blue; text-decoration: underline; font-weight: bold; font-size: 16px;">unit.link/voblit</a>
-    </p>
-    
-    <p style="font-size: 13px; color: #555; max-width: 500px; margin: 15px auto 0 auto; line-height: 1.4;">
-        <i>Notice: Scanning the image above or clicking the link above will take you to a website. Hooray. If you didn't know this, then is about time to get off of mommy's computer. By the way this is filler.</i>
-    </p>
-
-    <p style="font-size: 14px; color: #cc0000; text-align: center; border-top: 1px solid #ccc; padding-top: 10px; margin-top: 15px;">
-        <b>NOTICE:</b> Any other profiles claiming to be me are fake. I do not have a Twitch, Steam, or X account. Though I do now have Voblit on huggingface!
-    </p>
-    </div>
-
-    <center>
-        <p>This site is optimized for Netscape Navigator 4.0 at 800x600 resolution.</p>
-        <div class="netscape_icon">
-        <img src="netscape.gif" alt="netscape go spinny spinny">
+    <div id="main">
+        <div id="header">
+            <h1 class="banner-title">Voblit's Home in the Interwebs!</h1>
+            <p class="banner-subtitle">Official News &amp; Portal Hub</p>
         </div>
-        <br>
-        <p><i>Made by voblit, pls no steal... <a href="https://github.com/Voblit/voblit.github.io/">heres the source code for this stinking mess</a></i></p>
-    </center>
 
-    <div class="gif-container">
-        <a href="https://winzip.com/en/"><img src="2CYAK2YZKVHTRQVE3XQLSB6M3HC7R6VK.gif"></a>
-        <a href="https://support.microsoft.com/en-US/internet-explorer/internet-explorer-help"><img src="img5.gif" alt="get internet explorer"></a>
-        <a href="https://javascriptsource.com/"><img src="tjsbutton.gif"></a>
-        <a href="https://support.microsoft.com/en-us/windows/windows-media-player-legacy-e8f84f54-cd64-865c-2e83-1d8ec121b5b8"><img src="getmedia.gif"></a>
-        <a href="https://us.norton.com/"><img src="7Z6XSNI3AOROS6GUNT5ZU3IALEPPNPAO.gif"></a>
+        <p id="menus">
+            <a href="#">home</a>
+            <a href="https://github.com/Voblit" target="_blank">github</a>
+            <a href="https://population-weatherscan.vercel.app" target="_blank">weatherscan</a>
+            <a href="https://i-like-flowersos.vercel.app" target="_blank">flowersos</a>
+            <a href="https://unit.link/voblit" target="_blank">verify</a>
+        </p>
+
+        <div id="content">
+            <div id="left_sidebar">
+                <div class="small-captioned-box">
+                    <h2><a href="#">Quicklinks</a></h2>
+                    <ul class="post-summary">
+                        <li><a href="https://population-weatherscan.vercel.app">Weatherscan</a></li>
+                        <li><a href="https://i-like-flowersos.vercel.app">FlowersOS</a></li>
+                        <li><a href="https://wikisniff.vercel.app">Wikisniff</a></li>
+                        <li><a href="https://unit.link/voblit">Verified Links</a></li>
+                    </ul>
+                </div>
+
+                <div class="small-captioned-box">
+                    <h2>Status</h2>
+                    <p style="font-size: 10px; margin: 0;">
+                        <b>Status:</b> <span style="color: green;">Online</span><br />
+                        <b>Last Commit:</b> <span id="commit-date">Loading...</span>
+                    </p>
+                </div>
+            </div>
+
+            <div id="page">
+                <div class="captioned-box" id="blog-box">
+                    <h2 id="box-header-title">Home</h2>
+                    <div id="posts-feed">
+                        </div>
+                </div>
+
+                <div class="captioned-box" id="comments-box" style="display: none;">
+                    <h2>Article Comments</h2>
+                    <div id="cusdis_thread"
+                      data-host="https://cusdis.com"
+                      data-app-id="c82e7596-fd27-4f37-8df8-d41bcc839982"
+                      data-page-id=""
+                      data-page-url=""
+                      data-page-title=""
+                    ></div>
+                </div>
+            </div>
+
+            <div id="right_sidebar">
+                <div class="small-captioned-box">
+                    <h2>Search</h2>
+                    <form id="search-form" onsubmit="handleSearch(event)">
+                        <input type="text" id="search-input" class="search-field" placeholder="Search..." required="required" />
+                        <button type="submit" class="search-btn">Search</button>
+                    </form>
+                </div>
+
+                <div class="small-captioned-box" style="text-align: center;">
+                    <h2>Counter</h2>
+                    <img src="counter.gif" alt="counter" style="margin: 5px 0;" /><br />
+                    <img src="netscape.gif" alt="Netscape" style="height: 40px; margin-top: 5px;" />
+                </div>
+            </div>
+
+            <div style="clear:both;"></div>
+        </div>
+
+        <div class="gif-container">
+            <a href="https://winzip.com/en/"><img src="2CYAK2YZKVHTRQVE3XQLSB6M3HC7R6VK.gif" alt="WinZip" /></a>
+            <a href="https://support.microsoft.com/en-US/internet-explorer/internet-explorer-help"><img src="img5.gif" alt="IE" /></a>
+            <a href="https://javascriptsource.com/"><img src="tjsbutton.gif" alt="JS" /></a>
+            <a href="https://support.microsoft.com/en-us/windows/windows-media-player-legacy-e8f84f54-cd64-865c-2e83-1d8ec121b5b8"><img src="getmedia.gif" alt="WMP" /></a>
+            <a href="https://us.norton.com/"><img src="7Z6XSNI3AOROS6GUNT5ZU3IALEPPNPAO.gif" alt="Norton" /></a>
+        </div>
+
+        <div style="text-align: center; color: #333; margin-top: 10px; font-size: 11px;">
+            <p><i>Made by voblit | <a href="https://github.com/Voblit/voblit.github.io/">Source Code</a></i></p>
+        </div>
     </div>
-    <h4>You are visitor number: <img src="counter.gif"></h4>
-    <center><h3>And remember, Don't injure the operator!</h3></center>
-</div>
-<div id="celeste-wrapper" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999;"><img id="celeste-sprite" src="" style="max-width:80vw;pointer-events:none;image-rendering:pixelated;"></div>
-<audio id="madness-audio" src="Celes_crashout.wav"></audio>
-<footer><h6 onclick="crashout()" style="cursor:pointer;user-select:none;"><small id="madness-text">because... because because because Because Because BECAUSE!!!</small></h6></footer>
-<style>
-@keyframes s{0%{transform:translate(5px,5px)}50%{transform:translate(-5px,-5px)}100%{transform:translate(5px,5px)}}
-.shaking{animation:s .3s infinite}
-</style>
-<script>
-    
+
+    <div id="celeste-wrapper" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); z-index:9999;">
+        <img id="celeste-sprite" src="" style="max-width:80vw; pointer-events:none; image-rendering:pixelated;" alt="Celeste" />
+    </div>
+    <audio id="madness-audio" src="Celes_crashout.wav"></audio>
+
+    <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+    <script type="text/javascript">
+ 
+ const posts = [
+    {
+        id: "py2ez80-release-one-two",
+        title: "Release of py2ez80 1.2",
+        author: "Voblit",
+        date: "July 23, 2026",
+        preview: "I am happy to announce that a new version of my python to C (and then subsequently C to ASM using CEdev) transpiler has been updated...",
+        content: "I am happy to announce that a new version of my python to C (and then subsequently C to ASM using CEdev) transpiler has been updated to version 1.2. This version adds many new exciting features, such as the inclusion of a wizard, and flags for the transpiler. When launching the program without input or flags, instead of just doing nothing, now I added a whole wizard that automagically does the whole choosing setup for you! The py2ez80 tool allows for a practical subset of python to be eventually compiled to ez80 ASM. You can download it <a href='https://github.com/voblit/py2ez80'>here</a>.<br /><br /><img style='max-width:100%; height:auto;' alt='fourth_release' src='https://github.com/user-attachments/assets/cdaebf3c-58ec-4e7d-9dfa-2ad92e4f6b49' />"
+    },
+    {
+        id: "site-change",
+        title: "Site Redesign!",
+        author: "Voblit",
+        date: "July 23, 2026",
+        preview: "A long awaited update to this honestly crummy site, made to look much better...",
+        content: "After long last, I updated my personal site. I added a much cleaner UI, basing it off the ancient MaxCoderz forum, (thanks). Even added commenting..."
+    }
+];
+
+        function renderView() {
+            const hash = window.location.hash.replace('#', '');
+            const feedContainer = document.getElementById('posts-feed');
+            const commentsBox = document.getElementById('comments-box');
+            const headerTitle = document.getElementById('box-header-title');
+
+            if (hash) {
+                const post = posts.find(p => p.id === hash);
+                if (post) {
+                    headerTitle.innerText = "Article";
+                    feedContainer.innerHTML = `
+                        <p style="margin-bottom: 10px;"><a href="#">← Back to all posts</a></p>
+                        <h1>${post.title}</h1>
+                        <p class="subtitle">Posted by <b>${post.author}</b> on ${post.date}</p>
+                        <blockquote>${post.content}</blockquote>
+                    `;
+
+                    commentsBox.style.display = 'block';
+                    if (window.CUSDIS) {
+                        window.CUSDIS.renderTo(document.getElementById('cusdis_thread'), {
+                            appId: 'c82e7596-fd27-4f37-8df8-d41bcc839982',
+                            host: 'https://cusdis.com',
+                            pageId: post.id,
+                            pageUrl: window.location.href,
+                            pageTitle: post.title
+                        });
+                    }
+                    return;
+                }
+            }
+            headerTitle.innerText = "Home";
+            commentsBox.style.display = 'none';
+            feedContainer.innerHTML = posts.map((post, idx) => `
+                <h1><a href="#${post.id}">${post.title}</a></h1>
+                <p class="subtitle">Posted by <b>${post.author}</b> on ${post.date}</p>
+                <blockquote>${post.preview}</blockquote>
+                <p class="comments"><a href="#${post.id}">Read Article & Comments →</a></p>
+                ${idx < posts.length - 1 ? '<hr />' : ''}
+            `).join('');
+        }
+
+        window.addEventListener('hashchange', renderView);
+        window.addEventListener('load', renderView);
+        function handleSearch(e) {
+            e.preventDefault();
+            const query = document.getElementById('search-input').value.toLowerCase().trim();
+            const eggTriggers = ['celes', 'ludenberg', 'celestia', 'celestia ludenberg'];
+            
+            if (eggTriggers.some(trigger => query.includes(trigger))) {
+                crashout();
+            } else {
+                window.open('https://www.google.com/search?q=' + encodeURIComponent(query), '_blank');
+            }
+        }
+
         function crashout(){
-  const a=document.getElementById('madness-audio'),w=document.getElementById('celeste-wrapper'),s=document.getElementById('celeste-sprite'),t=document.getElementById('madness-text');
-  const m=[[0,'C1.webp'],[1,'C2.webp'],[2,'C3.webp'],[3,'C4.webp'],[4,'C5.webp']];
-  a.currentTime=0;a.play();w.style.display="block";s.classList.remove('shaking');t.style.color="red";t.style.fontWeight="bold";
-  const i=setInterval(()=>{
-    let c=m.filter(x=>a.currentTime>=x[0]).pop();
-    if(c)s.src=c[1];
-    if(a.currentTime>=4)s.classList.add('shaking');
-  },50);
-  a.onended=()=>{clearInterval(i);w.style.display="none";s.classList.remove('shaking');t.style.color="";t.style.fontWeight=""};
-}
-</script>
-<script>
-    //imgine usign the zutppia phocks as ur pfp 
+            const a=document.getElementById('madness-audio'),w=document.getElementById('celeste-wrapper'),s=document.getElementById('celeste-sprite');
+            const m=[[0,'C1.webp'],[1,'C2.webp'],[2,'C3.webp'],[3,'C4.webp'],[4,'C5.webp']];
+            a.currentTime=0;a.play();w.style.display="block";s.classList.remove('shaking');
+            const i=setInterval(()=>{
+                let c=m.filter(x=>a.currentTime>=x[0]).pop();
+                if(c)s.src=c[1];
+                if(a.currentTime>=4)s.classList.add('shaking');
+            },50);
+            a.onended=()=>{clearInterval(i);w.style.display="none";s.classList.remove('shaking');};
+        }
 
-    //i think i am high.. higher than cloud
-const el=document.getElementById('commit-date'),fmt=d=>{const dt=new Date(d);el.innerText=dt.toLocaleDateString()+' '+dt.toLocaleTimeString()};
-fetch('https://api.github.com/repos/Voblit/voblit.github.io/commits/main')
-  .then(r=>r.json()).then(d=>fmt(d.commit.author.date))
-  .catch(()=>{
-    fetch(window.location.href,{method:'HEAD'})
-      .then(r=>fmt(r.headers.get('date')))
-      .catch(()=>el.innerText='api no workie :<');
-  });
-
-    //if you see this, Please, please... enjoy the web <3
-</script>
-    
-    </body></html>
+        const el=document.getElementById('commit-date'),fmt=d=>{const dt=new Date(d);el.innerText=dt.toLocaleDateString()};
+        fetch('https://api.github.com/repos/Voblit/voblit.github.io/commits/main')
+          .then(r=>r.json()).then(d=>fmt(d.commit.author.date))
+          .catch(()=>{
+            fetch(window.location.href,{method:'HEAD'})
+              .then(r=>fmt(r.headers.get('date')))
+              .catch(()=>el.innerText='N/A');
+          });
+    </script>
+</body>
+</html>
