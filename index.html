@@ -222,6 +222,53 @@
 
         @keyframes s { 0%{transform:translate(3px,3px)} 50%{transform:translate(-3px,-3px)} 100%{transform:translate(3px,3px)} }
         .shaking { animation: s .15s infinite; }
+
+        /* Mobile layout styling */
+        @media screen and (max-width: 768px) {
+            #main {
+                width: 100% !important;
+                padding: 0 !important;
+            }
+            #header {
+                padding: 1em 0.5em !important;
+            }
+            #header h1.banner-title {
+                font-size: 150% !important;
+                letter-spacing: 0.5px !important;
+            }
+            #header p.banner-subtitle {
+                font-size: 10px !important;
+            }
+            #menus {
+                font-size: 11px !important;
+                padding: 4px 0 !important;
+            }
+            #menus a {
+                padding: 4px 8px !important;
+            }
+            #content {
+                padding: 6px !important;
+            }
+            /* Stack sidebars and main body vertically */
+            #left_sidebar,
+            #page,
+            #right_sidebar {
+                width: 100% !important;
+                float: none !important;
+                margin: 0 0 10px 0 !important;
+            }
+            .top-left-fan {
+                width: 45px !important;
+                top: 5px !important;
+                left: 5px !important;
+                opacity: 0.8;
+            }
+            div.captioned-box h2,
+            div.small-captioned-box h2 {
+                text-align: center !important;
+                font-size: 12px !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -344,6 +391,7 @@
             const feedContainer = document.getElementById('posts-feed');
             const commentsBox = document.getElementById('comments-box');
             const headerTitle = document.getElementById('box-header-title');
+            const cusdisThread = document.getElementById('cusdis_thread');
 
             if (hash) {
                 const post = posts.find(p => p.id === hash);
@@ -356,19 +404,26 @@
                         <blockquote>${post.content}</blockquote>
                     `;
 
+                    // Set per-post metadata on the HTML container element
+                    cusdisThread.setAttribute('data-page-id', post.id);
+                    cusdisThread.setAttribute('data-page-url', window.location.origin + window.location.pathname + '#' + post.id);
+                    cusdisThread.setAttribute('data-page-title', post.title);
+
                     commentsBox.style.display = 'block';
+
                     if (window.CUSDIS) {
-                        window.CUSDIS.renderTo(document.getElementById('cusdis_thread'), {
+                        window.CUSDIS.renderTo(cusdisThread, {
                             appId: 'c82e7596-fd27-4f37-8df8-d41bcc839982',
                             host: 'https://cusdis.com',
                             pageId: post.id,
-                            pageUrl: window.location.href,
+                            pageUrl: window.location.origin + window.location.pathname + '#' + post.id,
                             pageTitle: post.title
                         });
                     }
                     return;
                 }
             }
+
             headerTitle.innerText = "Home";
             commentsBox.style.display = 'none';
             feedContainer.innerHTML = posts.map((post, idx) => `
@@ -380,7 +435,7 @@
             `).join('');
         }
 
-        // Handle iframe resize events emitted from Cusdis
+        // Dynamic iframe height resize listener
         window.addEventListener('message', function(e) {
             try {
                 const data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
@@ -391,9 +446,7 @@
                         iframe.style.setProperty('min-height', data.data + 'px', 'important');
                     }
                 }
-            } catch (err) {
-                // Ignore irrelevant cross-origin postMessage events
-            }
+            } catch (err) {}
         });
 
         window.addEventListener('hashchange', renderView);
