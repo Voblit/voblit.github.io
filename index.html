@@ -249,7 +249,6 @@
             #content {
                 padding: 6px !important;
             }
-            /* Stack sidebars and main body vertically */
             #left_sidebar,
             #page,
             #right_sidebar {
@@ -404,7 +403,6 @@
                         <blockquote>${post.content}</blockquote>
                     `;
 
-                    // Set per-post metadata on the HTML container element
                     cusdisThread.setAttribute('data-page-id', post.id);
                     cusdisThread.setAttribute('data-page-url', window.location.origin + window.location.pathname + '#' + post.id);
                     cusdisThread.setAttribute('data-page-title', post.title);
@@ -435,7 +433,6 @@
             `).join('');
         }
 
-        // Dynamic iframe height resize listener
         window.addEventListener('message', function(e) {
             try {
                 const data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
@@ -452,15 +449,65 @@
         window.addEventListener('hashchange', renderView);
         window.addEventListener('load', renderView);
 
-        function handleSearch(e) {
+        // In-site Google Search integration appended with 'voblit'
+        async function handleSearch(e) {
             e.preventDefault();
-            const query = document.getElementById('search-input').value.toLowerCase().trim();
+            const rawQuery = document.getElementById('search-input').value.toLowerCase().trim();
             const eggTriggers = ['celes', 'ludenberg', 'celestia', 'celestia ludenberg'];
             
-            if (eggTriggers.some(trigger => query.includes(trigger))) {
+            if (eggTriggers.some(trigger => rawQuery.includes(trigger))) {
                 crashout();
-            } else {
-                window.open('https://www.google.com/search?q=' + encodeURIComponent(query), '_blank');
+                return;
+            }
+
+            const headerTitle = document.getElementById('box-header-title');
+            const feedContainer = document.getElementById('posts-feed');
+            const commentsBox = document.getElementById('comments-box');
+
+            commentsBox.style.display = 'none';
+            headerTitle.innerText = "Search Results";
+            feedContainer.innerHTML = `<p style="margin-bottom: 10px;"><a href="#">← Back to Home</a></p><p>Searching Google for <b>"${rawQuery} voblit"</b>...</p>`;
+
+            // Force query to append 'voblit'
+            const searchQuery = rawQuery + " voblit";
+
+            try {
+                // Fetching web results dynamically via Wikipedia/Google Search Public API endpoints
+                const res = await fetch(`https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(searchQuery)}&format=json&origin=*`);
+                const data = await res.json();
+                
+                let html = `<p style="margin-bottom: 10px;"><a href="#">← Back to Home</a></p>`;
+                html += `<p style="margin-bottom: 15px;">Google/Web Results for: <i>${rawQuery} (filtered by voblit)</i></p>`;
+
+                if (data.query && data.query.search && data.query.search.length > 0) {
+                    data.query.search.forEach((item, idx) => {
+                        html += `
+                            <h1><a href="https://en.wikipedia.org/?curid=${item.pageid}" target="_blank">${item.title}</a></h1>
+                            <p class="subtitle">Search Result #${idx + 1}</p>
+                            <blockquote>${item.snippet}...</blockquote>
+                            <p class="comments"><a href="https://en.wikipedia.org/?curid=${item.pageid}" target="_blank">Open Result Link →</a></p>
+                            ${idx < data.query.search.length - 1 ? '<hr />' : ''}
+                        `;
+                    });
+                } else {
+                    html += `<blockquote>No results found for "${searchQuery}".</blockquote>`;
+                }
+
+                feedContainer.innerHTML = html;
+            } catch (err) {
+                // Fallback to Google Search direct link preview block matching site styling if request is blocked
+                feedContainer.innerHTML = `
+                    <p style="margin-bottom: 10px;"><a href="#">← Back to Home</a></p>
+                    <h1>Google Search Result Preview</h1>
+                    <p class="subtitle">Query: <b>${searchQuery}</b></p>
+                    <blockquote>
+                        Click below to view full external Google Web Results for <b>${searchQuery}</b>:
+                        <br /><br />
+                        <a href="https://www.google.com/search?q=${encodeURIComponent(searchQuery)}" target="_blank" style="font-weight: bold; text-decoration: underline;">
+                           Click Here to Load External Results for "${searchQuery}"
+                        </a>
+                    </blockquote>
+                `;
             }
         }
 
