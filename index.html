@@ -44,7 +44,6 @@
             margin: 0 auto;
             padding: 1em 0;
         }
-        /* Text-Based Header Banner */
         #header {
             text-align: center;
             padding: 1.5em 1em;
@@ -106,7 +105,6 @@
             float: right;
         }
 
-        /* MaxCoderz Captioned Boxes */
         div.captioned-box,
         div.small-captioned-box {
             margin-top: 12px;
@@ -138,7 +136,6 @@
             margin-top: 0;
         }
 
-        /* Cusdis Embed Frame Auto-Height & Dynamic Sizing Rules */
         #cusdis_thread {
             width: 100%;
             min-height: 450px;
@@ -185,7 +182,6 @@
             margin: 15px 0;
         }
 
-        /* Floating Ceiling Fan */
         .top-left-fan {
             position: fixed;
             top: 10px;
@@ -194,7 +190,6 @@
             width: 80px;
         }
 
-        /* Search input styling */
         .search-field {
             width: 100%;
             padding: 2px;
@@ -212,7 +207,7 @@
             padding: 2px;
         }
 
-        /* Customizing Google Search to match retro site style */
+        /* Custom Google CSE layout tweaks for retro look */
         .gsc-control-cse {
             background-color: transparent !important;
             border: none !important;
@@ -244,54 +239,23 @@
         @keyframes s { 0%{transform:translate(3px,3px)} 50%{transform:translate(-3px,-3px)} 100%{transform:translate(3px,3px)} }
         .shaking { animation: s .15s infinite; }
 
-        /* Mobile layout styling */
         @media screen and (max-width: 768px) {
-            #main {
-                width: 100% !important;
-                padding: 0 !important;
-            }
-            #header {
-                padding: 1em 0.5em !important;
-            }
-            #header h1.banner-title {
-                font-size: 150% !important;
-                letter-spacing: 0.5px !important;
-            }
-            #header p.banner-subtitle {
-                font-size: 10px !important;
-            }
-            #menus {
-                font-size: 11px !important;
-                padding: 4px 0 !important;
-            }
-            #menus a {
-                padding: 4px 8px !important;
-            }
-            #content {
-                padding: 6px !important;
-            }
-            #left_sidebar,
-            #page,
-            #right_sidebar {
+            #main { width: 100% !important; padding: 0 !important; }
+            #header { padding: 1em 0.5em !important; }
+            #header h1.banner-title { font-size: 150% !important; letter-spacing: 0.5px !important; }
+            #header p.banner-subtitle { font-size: 10px !important; }
+            #menus { font-size: 11px !important; padding: 4px 0 !important; }
+            #menus a { padding: 4px 8px !important; }
+            #content { padding: 6px !important; }
+            #left_sidebar, #page, #right_sidebar {
                 width: 100% !important;
                 float: none !important;
                 margin: 0 0 10px 0 !important;
             }
-            .top-left-fan {
-                width: 45px !important;
-                top: 5px !important;
-                left: 5px !important;
-                opacity: 0.8;
-            }
-            div.captioned-box h2,
-            div.small-captioned-box h2 {
-                text-align: center !important;
-                font-size: 12px !important;
-            }
+            .top-left-fan { width: 45px !important; top: 5px !important; left: 5px !important; opacity: 0.8; }
+            div.captioned-box h2, div.small-captioned-box h2 { text-align: center !important; font-size: 12px !important; }
         }
     </style>
-
-    <script async src="https://cse.google.com/cse.js?cx=a2dd4a5697c854af6"></script>
 </head>
 <body>
 
@@ -304,7 +268,7 @@
         </div>
 
         <p id="menus">
-            <a href="#">home</a>
+            <a href="#" onclick="showHome(); return false;">home</a>
             <a href="https://github.com/Voblit" target="_blank">github</a>
             <a href="https://unit.link/voblit" target="_blank">my links</a>
             <a href="http://internetometer.com/give/52087" target="_blank">give me an internet plz</a>
@@ -313,7 +277,7 @@
         <div id="content">
             <div id="left_sidebar">
                 <div class="small-captioned-box">
-                    <h2><a href="#">Quicklinks</a></h2>
+                    <h2><a href="#" onclick="showHome(); return false;">Quicklinks</a></h2>
                     <ul class="post-summary">
                         <li><a href="https://population-weatherscan.vercel.app">Weatherscan</a></li>
                         <li><a href="https://i-like-flowersos.vercel.app">FlowersOS</a></li>
@@ -334,11 +298,12 @@
             <div id="page">
                 <div class="captioned-box" id="blog-box">
                     <h2 id="box-header-title">Home</h2>
-                    <div id="posts-feed">
-                    </div>
+                    
+                    <div id="posts-feed"></div>
+
                     <div id="search-results-wrapper" style="display: none;">
                         <p style="margin-bottom: 10px;"><a href="#" onclick="showHome(); return false;">← Back to Home</a></p>
-                        <div class="gcse-searchresults-only"></div>
+                        <div class="gcse-searchresults-only" data-gssTarget="_self"></div>
                     </div>
                 </div>
 
@@ -393,6 +358,17 @@
 
     <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
     <script type="text/javascript">
+        // Inject Google CSE script dynamically
+        (function() {
+            var cx = 'a2dd4a5697c854af6';
+            var gcse = document.createElement('script');
+            gcse.type = 'text/javascript';
+            gcse.async = true;
+            gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(gcse, s);
+        })();
+
         const posts = [
             {
                 id: "py2ez80-release-one-two",
@@ -425,8 +401,7 @@
             const headerTitle = document.getElementById('box-header-title');
             const cusdisThread = document.getElementById('cusdis_thread');
 
-            if (hash.startsWith('gsc.q=')) {
-                // Showing inline Google search results
+            if (hash.startsWith('search=')) {
                 headerTitle.innerText = "Search Results";
                 feedContainer.style.display = 'none';
                 commentsBox.style.display = 'none';
@@ -434,7 +409,6 @@
                 return;
             }
 
-            // Normal Post view or Home Feed
             feedContainer.style.display = 'block';
             searchWrapper.style.display = 'none';
 
@@ -489,27 +463,17 @@
                 return;
             }
 
-            // Execute search inline inside Google CSE element
-            const element = google.search.cse.element.getElement('gsc-searchresults-only');
-            if (element) {
-                element.execute(query);
-                window.location.hash = `gsc.q=${encodeURIComponent(query)}`;
-                renderView();
+            window.location.hash = `search=${encodeURIComponent(query)}`;
+            renderView();
+
+            // Fire off execution safely via Google's CSE API
+            if (window.google && window.google.search && window.google.search.cse && window.google.search.cse.element) {
+                var element = google.search.cse.element.getElement('gsc-searchresults-only');
+                if (element) {
+                    element.execute(query);
+                }
             }
         }
-
-        window.addEventListener('message', function(e) {
-            try {
-                const data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
-                if (data && data.from === 'cusdis' && data.event === 'resize') {
-                    const iframe = document.querySelector('#cusdis_thread iframe');
-                    if (iframe && data.data) {
-                        iframe.style.setProperty('height', data.data + 'px', 'important');
-                        iframe.style.setProperty('min-height', data.data + 'px', 'important');
-                    }
-                }
-            } catch (err) {}
-        });
 
         window.addEventListener('hashchange', renderView);
         window.addEventListener('load', renderView);
