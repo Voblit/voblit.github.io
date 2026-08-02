@@ -79,6 +79,12 @@
 
     <img src="ceilingfan.gif" class="top-left-fan" alt="staying cool" />
 
+    <div id="sticky-note" style="position: fixed; bottom: 15px; right: 15px; width: 150px; background: #ffffcc; border: 1px solid #cccc66; box-shadow: 2px 2px 5px rgba(0,0,0,0.3); padding: 8px; font-size: 10px; font-family: 'Comic Sans MS', cursive, sans-serif; z-index: 500;">
+        <div style="text-align: right; font-weight: bold; cursor: pointer;" onclick="document.getElementById('sticky-note').style.display='none';">[x]</div>
+        <b>Sticky Note:</b><br />
+        Try searching <i>caseoh</i> or <i>kitty</i> in the search bar!
+    </div>
+
     <div id="main">
         <div id="header">
             <h1 class="banner-title">Voblit's Home in the Interwebs!</h1>
@@ -93,6 +99,12 @@
         </p>
 
         <div id="content">
+            <div style="background: #000000; color: #00ff00; font-family: monospace; padding: 3px; font-size: 11px; border: 1px solid #000080; margin-bottom: 8px;">
+                <marquee behavior="scroll" direction="left" scrollamount="4">
+                    *** WELCOME TO VOBLIT.GITHUB.IO *** LATEST RELEASE: PY2EZ80 1.2.1 *** DON'T FORGET TO LEAVE AN INTERNET IN THE SIDEBAR ***
+                </marquee>
+            </div>
+
             <div id="left_sidebar">
                 <div class="small-captioned-box">
                     <h2><a href="javascript:void(0)" onclick="go_home(); return false;">Quicklinks</a></h2>
@@ -148,6 +160,20 @@
                 </div>
 
                 <div class="small-captioned-box" style="text-align: center;">
+                    <h2>Theme</h2>
+                    <button onclick="setTheme('default')" style="font-size: 9px; cursor: pointer; padding: 2px 4px !important;">Win95</button>
+                    <button onclick="setTheme('matrix')" style="font-size: 9px; cursor: pointer; padding: 2px 4px !important;">Matrix</button>
+                    <button onclick="setTheme('hotdog')" style="font-size: 9px; cursor: pointer; padding: 2px 4px !important;">Hotdog</button>
+                </div>
+
+                <div class="small-captioned-box" style="text-align: center;">
+                    <h2>Soundboard</h2>
+                    <button onclick="new Audio('https://win98.cyberia.is/sounds/CHORD.WAV').play();" style="font-size: 9px; margin: 1px; cursor: pointer;">Chord</button>
+                    <button onclick="new Audio('https://win98.cyberia.is/sounds/DING.WAV').play();" style="font-size: 9px; margin: 1px; cursor: pointer;">Ding</button>
+                    <button onclick="new Audio('https://win98.cyberia.is/sounds/TADA.WAV').play();" style="font-size: 9px; margin: 1px; cursor: pointer;">Ta-Da!</button>
+                </div>
+
+                <div class="small-captioned-box" style="text-align: center;">
                     <h2>Counter</h2>
                     <img src="counter.gif" alt="counter" style="margin: 5px 0px !important;" /><br />
                     <img src="netscape.gif" alt="Netscape" style="height: 40px; margin-top: 5px !important;" />
@@ -177,7 +203,6 @@
 
     <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
     <script type="text/javascript">
-
         _cx = 'a2dd4a5697c854af6';
         _posts = [
             { id: "py2ez80-1.2.1", title: "Py2ez80 1.2.1 brings concatenation", author: "Voblit", date: "August 2, 2026", preview: "Another update comes to py2ez80, and this is a smaller one than the last, but still pretty cool...", content: "Another update comes to py2ez80, and this is a smaller one than the last, but still pretty cool. In this update, py2ez80 supports Concatenation of strings, where you take a print() function and are now able to join strings inside of it, like x = 'string' + ' string 2' or print('string' + x). This update hopes to bring more python functionality to the transpiler, making it more possible for people to port their own programs to it! Of course, we have a banner. <img width='851' height='315' alt='fourth_release' src='https://github.com/user-attachments/assets/6a1d9c7d-7fb7-4f5b-80a5-490691e0c685' /> The link can be found in the last post about py2ez80." },
@@ -199,10 +224,26 @@
             eval("do_render();");
         }
 
+        function setTheme(theme) {
+            var header = document.getElementById('header');
+            if (theme === 'matrix') {
+                document.body.style.background = '#000000';
+                header.style.background = '#003300';
+                header.style.color = '#00ff00';
+            } else if (theme === 'hotdog') {
+                document.body.style.background = '#ff0000';
+                header.style.background = '#ffff00';
+                header.style.color = '#000000';
+            } else {
+                document.body.style.background = '#c0c0c0';
+                header.style.background = '#000080';
+                header.style.color = '#ffffff';
+            }
+        }
+
         function do_render() {
             var _hash = window.location.hash.replace('#', '');
             
-            // Re-querying DOM endlessly instead of caching references
             if (_hash.indexOf('search=') == 0) {
                 document.getElementById('box-header-title').innerText = "Search Results";
                 document.getElementById('posts-feed').style.display = 'none';
@@ -251,7 +292,6 @@
                 }
             }
 
-            // Fallback rendering of posts array
             document.getElementById('box-header-title').innerText = "Home";
             document.getElementById('comments-box').style.display = 'none';
             
@@ -272,6 +312,16 @@
             if (e && e.preventDefault) e.preventDefault();
             
             var _q = document.getElementById('search-input').value.toLowerCase().trim();
+
+            if (_q == 'caseoh' || _q == 'caseoh.html') {
+                window.location.href = 'caaasoh.html';
+                return;
+            }
+            if (_q == 'kitty' || _q == 'kitty.html') {
+                window.location.href = 'kitty.html';
+                return;
+            }
+
             var _triggers = ['celes', 'ludenberg', 'celestia', 'celestia ludenberg'];
             var _isEgg = false;
 
@@ -334,7 +384,6 @@
         function init_app() {
             window.onhashchange = function() { do_render(); };
             do_render();
-
 
             var _el = document.getElementById('commit-date');
             fetch('https://api.github.com/repos/Voblit/voblit.github.io/commits/main')
