@@ -1,227 +1,268 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Voblit - Home</title>
+    <style type="text/css">
+
+        * { margin: 0px !important; padding: 0px !important; color: inherit; font-size: 100%; font-family: inherit; box-sizing: border-box; }
+        html { height: 100%; background: #c0c0c0; }
+        body { height: 100%; font-family: arial, sans-serif; font-size: 12px; color: #000000; }
+        a { color: #000080; text-decoration: none; }
+        a:hover { color: #ff0000; text-decoration: underline; }
+        img { border: 0px none transparent; }
+        h1 { font-size: 140%; }
+        h2 { font-size: 130%; }
+        h3 { font-size: 120%; }
+
+        #main { width: 915px; margin: 0px auto !important; padding: 1em 0px !important; }
+        #header { text-align: center; padding: 1.5em 1em !important; background: #000080; color: #ffffff; border-bottom: 2px solid #000040; }
+        #header h1.banner-title { font-size: 220%; font-family: "Trebuchet MS", Arial, sans-serif; letter-spacing: 1.5px; text-transform: uppercase; text-shadow: 2px 2px #000000; margin-bottom: 4px !important; }
+        #header p.banner-subtitle { font-size: 11px; color: #d4d0c8; letter-spacing: 1px; text-transform: uppercase; }
+
+        #menus { background: #d4d0c8; border-top: 1px solid #999999; border-bottom: 1px solid #999999; text-align: center; line-height: 19px; font-size: 10px; font-weight: bold; }
+        #menus a { color: #000000; padding: 1px 6px !important; display: inline-block; }
+        #menus a:hover { color: #ffffff; background: #000080; text-decoration: none; }
+        #content { background: #e4e0d8; padding: 8px !important; border: 1px solid #999999; }
+        #left_sidebar { width: 155px; float: left; }
+        #page { width: 565px; float: left; margin: 0px 10px !important; padding-bottom: 10px !important; }
+        #right_sidebar { width: 155px; float: right; }
+
+        div.captioned-box { margin-top: 12px !important; padding: 5px 7px !important; background: #ffffff; border-bottom: 15px solid #d4d0c8; }
+        div.small-captioned-box { margin-top: 12px !important; padding: 5px 7px !important; background: #ffffff; font-size: 10px; }
+        div.captioned-box:first-child { margin-top: 0px !important; }
+        div.small-captioned-box:first-child { margin-top: 0px !important; }
+        
+        div.captioned-box h2 { margin: -5px -7px 10px -7px !important; background: #d4d0c8; padding: 5px 7px !important; text-align: right; font-size: 11px; letter-spacing: 1px; }
+        div.small-captioned-box h2 { margin: -5px -7px 10px -7px !important; background: #d4d0c8; padding: 5px 7px !important; text-align: right; font-size: 11px; letter-spacing: 1px; }
+
+        #cusdis_thread { width: 100%; min-height: 450px; }
+        #cusdis_thread iframe { width: 100% !important; min-height: 450px !important; border: none !important; }
+
+        ul.post-summary { list-style: none; }
+        ul.post-summary li { margin-bottom: 6px !important; border-bottom: 1px dashed #cccccc; padding-bottom: 4px !important; }
+        ul.post-summary li:last-child { border-bottom: none; }
+        p.subtitle { font-size: smaller; color: #333333; margin-top: 0.5em !important; }
+        p.comments { text-align: right; font-size: 11px; margin-top: 8px !important; font-weight: bold; }
+        blockquote { margin-top: 1em !important; margin-bottom: 1em !important; padding: 6px 10px !important; background: #fdfdfd; border-left: 3px solid #000080; }
+        hr { border: none; height: 1px; background: #cccccc; margin: 15px 0px !important; }
+
+        .top-left-fan { position: fixed; top: 10px; left: 10px; z-index: 1000; width: 80px; }
+        .search-field { width: 100%; padding: 2px !important; border: 1px solid #888888; font-size: 10px; margin-bottom: 4px !important; }
+        .search-btn { width: 100%; background: #d4d0c8; border: 1px solid #888888; font-size: 10px; font-weight: bold; cursor: pointer; padding: 2px !important; }
+
+        .gsc-control-cse { background-color: transparent !important; border: none !important; padding: 0px !important; }
+        .gsc-webResult.gsc-result { background-color: #ffffff !important; border-bottom: 1px dashed #cccccc !important; padding: 8px 0px !important; }
+        .gs-title, .gs-title b { color: #000080 !important; text-decoration: none !important; font-size: 13px !important; }
+        .gs-title:hover { color: #ff0000 !important; text-decoration: underline !important; }
+
+        .gif-container { display: flex; justify-content: center; gap: 4px; flex-wrap: wrap; margin-top: 15px !important; }
+
+        @keyframes s { 0%{transform:translate(3px,3px)} 50%{transform:translate(-3px,-3px)} 100%{transform:translate(3px,3px)} }
+        .shaking { animation: s .15s infinite; }
+
+        @media screen and (max-width: 768px) {
+            #main { width: 100% !important; padding: 0px !important; }
+            #header { padding: 1em 0.5em !important; }
+            #header h1.banner-title { font-size: 150% !important; letter-spacing: 0.5px !important; }
+            #header p.banner-subtitle { font-size: 10px !important; }
+            #menus { font-size: 11px !important; padding: 4px 0px !important; }
+            #menus a { padding: 4px 8px !important; }
+            #content { padding: 6px !important; }
+            #left_sidebar, #page, #right_sidebar { width: 100% !important; float: none !important; margin: 0px 0px 10px 0px !important; }
+            .top-left-fan { width: 45px !important; top: 5px !important; left: 5px !important; opacity: 0.8; }
+            div.captioned-box h2, div.small-captioned-box h2 { text-align: center !important; font-size: 12px !important; }
+        }
+    </style>
 </head>
-<body bgcolor="#c0c0c0" text="#000000" link="#000080" vlink="#000080" alink="#ff0000" onload="javascript:eval('r()')" onhashchange="javascript:eval('r()')">
+<body onload="javascript:eval('init_stuff()')">
 
-    <img src="ceilingfan.gif" style="position:fixed;top:10px;left:10px;z-index:1000;width:80px;" alt="staying cool" id="fan">
+    <img src="ceilingfan.gif" class="top-left-fan" alt="staying cool" />
 
-    <table width="915" align="center" border="0" cellpadding="0" cellspacing="0" id="main">
-        <tr>
-            <td bgcolor="#000080" align="center" style="padding:18px; border-bottom:2px solid #000040;">
-                <font face="Trebuchet MS, Arial" size="6" color="#FFFFFF">
-                    <b style="letter-spacing:1.5px; text-transform:uppercase; text-shadow:2px 2px #000000;">Voblit's Home in the Interwebs!</b>
-                </font><br>
-                <font face="arial" size="1" color="#d4d0c8">
-                    <span style="letter-spacing:1px; text-transform:uppercase;">i have internet... fear me</span>
-                </font>
-            </td>
-        </tr>
-        <tr>
-            <td bgcolor="#d4d0c8" align="center" style="border-top:1px solid #999; border-bottom:1px solid #999; font-size:10px; font-weight:bold; height:19px;">
-                <font face="arial">
-                    <a href="javascript:void(0)" onclick="window.location.hash='';r();"><font color="#000">home</font></a> &nbsp;
-                    <a href="https://github.com/Voblit" target="_blank"><font color="#000">github</font></a> &nbsp;
-                    <a href="https://unit.link/voblit" target="_blank"><font color="#000">my links</font></a> &nbsp;
-                    <a href="http://internetometer.com/give/52087" target="_blank"><font color="#000">give me an internet plz</font></a>
-                </font>
-            </td>
-        </tr>
-        <tr>
-            <td bgcolor="#e4e0d8" style="padding:8px; border:1px solid #999;">
-                <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                    <tr valign="top">
-                        <td width="155">
-                            <table width="100%" bgcolor="#ffffff" style="font-size:10px; font-family:arial;" cellpadding="5">
-                                <tr>
-                                    <td bgcolor="#d4d0c8" align="right"><b><a href="javascript:void(0)" onclick="window.location.hash='';r();"><font color="#000">Quicklinks</font></a></b></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        • <a href="https://population-weatherscan.vercel.app">Weatherscan</a><br>
-                                        • <a href="https://i-like-flowersos.vercel.app">FlowersOS</a><br>
-                                        • <a href="https://wikisniff.vercel.app">Houndfetch games</a><br>
-                                        • <a href="https://github.com/voblit/py2ez80">py2ez80 Transpiler</a><br>
-                                        • <a href="https://simco-bulletin.vercel.app">SimCo Bulletin</a>
-                                    </td>
-                                </tr>
-                            </table>
-                            <br>
-                            <table width="100%" bgcolor="#ffffff" style="font-size:10px; font-family:arial;" cellpadding="5">
-                                <tr>
-                                    <td bgcolor="#d4d0c8" align="right"><b>Status</b></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <b>Status:</b> <font color="green">Online</font><br>
-                                        <b>Last Commit:</b> <span id="commit-date">Loading...</span>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
+    <div id="main">
+        <div id="header">
+            <h1 class="banner-title">Voblit's Home in the Interwebs!</h1>
+            <p class="banner-subtitle">i have internet... fear me</p>
+        </div>
 
-                        <td width="565" style="padding:0 10px;">
-                            <table width="100%" bgcolor="#ffffff" style="border-bottom:15px solid #d4d0c8;" cellpadding="7">
-                                <tr>
-                                    <td bgcolor="#d4d0c8" align="right" style="font-size:11px; font-family:arial;"><b id="box-header-title">Home</b></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div id="posts-feed"></div>
-                                        <div id="search-results-wrapper" style="display:none;">
-                                            <p><a href="javascript:void(0)" onclick="window.location.hash='';r();">← Back to Home</a></p>
-                                            <div class="gcse-searchresults-only" data-gssTarget="_self"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-
-                            <div id="comments-box" style="display:none; margin-top:12px;">
-                                <table width="100%" bgcolor="#ffffff" cellpadding="7">
-                                    <tr><td bgcolor="#d4d0c8" align="right" style="font-size:11px; font-family:arial;"><b>Article Comments</b></td></tr>
-                                    <tr>
-                                        <td>
-                                            <div id="cusdis_thread" data-host="https://cusdis.com" data-app-id="c82e7596-fd27-4f37-8df8-d41bcc839982" style="width:100%; min-height:450px;"></div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </td>
-
-                        <td width="155">
-                            <table width="100%" bgcolor="#ffffff" style="font-size:10px; font-family:arial;" cellpadding="5">
-                                <tr><td bgcolor="#d4d0c8" align="right"><b>Search</b></td></tr>
-                                <tr>
-                                    <td>
-                                        <form onsubmit="javascript:eval('h(event)');return false;">
-                                            <input type="text" id="search-input" style="width:100%; font-size:10px;" required>
-                                            <input type="submit" value="Search" style="width:100%; background:#d4d0c8; font-size:10px; font-weight:bold; margin-top:4px;">
-                                        </form>
-                                    </td>
-                                </tr>
-                            </table>
-                            <br>
-                            <table width="100%" bgcolor="#ffffff" style="font-size:10px; font-family:arial;" cellpadding="5">
-                                <tr><td bgcolor="#d4d0c8" align="center"><b>Counter</b></td></tr>
-                                <tr>
-                                    <td align="center">
-                                        <img src="counter.gif" alt="counter"><br>
-                                        <img src="netscape.gif" alt="Netscape" height="40">
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
-
-    <center>
-        <p>
-            <a href="https://winzip.com/en/"><img src="2CYAK2YZKVHTRQVE3XQLSB6M3HC7R6VK.gif" border="0"></a>
-            <a href="https://support.microsoft.com/en-US/internet-explorer/internet-explorer-help"><img src="img5.gif" border="0"></a>
-            <a href="https://javascriptsource.com/"><img src="tjsbutton.gif" border="0"></a>
-            <a href="https://support.microsoft.com/en-us/windows/windows-media-player-legacy-e8f84f54-cd64-865c-2e83-1d8ec121b5b8"><img src="getmedia.gif" border="0"></a>
-            <a href="https://us.norton.com/"><img src="7Z6XSNI3AOROS6GUNT5ZU3IALEPPNPAO.gif" border="0"></a>
+        <p id="menus">
+            <a href="javascript:void(0)" onclick="javascript:eval('go_home()'); return false;">home</a>
+            <a href="https://github.com/Voblit" target="_blank">github</a>
+            <a href="https://unit.link/voblit" target="_blank">my links</a>
+            <a href="http://internetometer.com/give/52087" target="_blank">give me an internet plz</a>
         </p>
-        <font size="1" face="arial"><i>Made by voblit | <a href="https://github.com/Voblit/voblit.github.io/">Source Code</a></i></font>
-    </center>
+
+        <div id="content">
+            <div id="left_sidebar">
+                <div class="small-captioned-box">
+                    <h2><a href="javascript:void(0)" onclick="javascript:eval('go_home()'); return false;">Quicklinks</a></h2>
+                    <ul class="post-summary">
+                        <li><a href="https://population-weatherscan.vercel.app">Weatherscan</a></li>
+                        <li><a href="https://i-like-flowersos.vercel.app">FlowersOS</a></li>
+                        <li><a href="https://wikisniff.vercel.app">Houndfetch games</a></li>
+                        <li><a href="https://github.com/voblit/py2ez80">py2ez80 Transpiler</a></li>
+                        <li><a href="https://simco-bulletin.vercel.app">SimCo Bulletin</a></li>
+                    </ul>
+                </div>
+
+                <div class="small-captioned-box">
+                    <h2>Status</h2>
+                    <p style="font-size: 10px; margin: 0px !important;">
+                        <b>Status:</b> <span style="color: green;">Online</span><br />
+                        <b>Last Commit:</b> <span id="commit-date">Loading...</span>
+                    </p>
+                </div>
+            </div>
+
+            <div id="page">
+                <div class="captioned-box" id="blog-box">
+                    <h2 id="box-header-title">Home</h2>
+                    
+                    <div id="posts-feed"></div>
+
+                    <div id="search-results-wrapper" style="display: none;">
+                        <p style="margin-bottom: 10px !important;"><a href="javascript:void(0)" onclick="javascript:eval('go_home()'); return false;">← Back to Home</a></p>
+                        <div class="gcse-searchresults-only" data-gssTarget="_self"></div>
+                    </div>
+                </div>
+
+                <div class="captioned-box" id="comments-box" style="display: none;">
+                    <h2>Article Comments</h2>
+                    <div id="cusdis_thread"
+                      data-host="https://cusdis.com"
+                      data-app-id="c82e7596-fd27-4f37-8df8-d41bcc839982"
+                      data-page-id=""
+                      data-page-url=""
+                      data-page-title=""
+                    ></div>
+                </div>
+            </div>
+
+            <div id="right_sidebar">
+                <div class="small-captioned-box">
+                    <h2>Search</h2>
+                    <form id="search-form" onsubmit="javascript:eval('do_search(event)'); return false;">
+                        <input type="text" id="search-input" class="search-field" placeholder="Search..." required="required" />
+                        <button type="submit" class="search-btn">Search</button>
+                    </form>
+                </div>
+
+                <div class="small-captioned-box" style="text-align: center;">
+                    <h2>Counter</h2>
+                    <img src="counter.gif" alt="counter" style="margin: 5px 0px !important;" /><br />
+                    <img src="netscape.gif" alt="Netscape" style="height: 40px; margin-top: 5px !important;" />
+                </div>
+            </div>
+
+            <div style="clear:both;"></div>
+        </div>
+
+        <div class="gif-container">
+            <a href="https://winzip.com/en/"><img src="2CYAK2YZKVHTRQVE3XQLSB6M3HC7R6VK.gif" alt="WinZip" /></a>
+            <a href="https://support.microsoft.com/en-US/internet-explorer/internet-explorer-help"><img src="img5.gif" alt="IE" /></a>
+            <a href="https://javascriptsource.com/"><img src="tjsbutton.gif" alt="JS" /></a>
+            <a href="https://support.microsoft.com/en-us/windows/windows-media-player-legacy-e8f84f54-cd64-865c-2e83-1d8ec121b5b8"><img src="getmedia.gif" alt="WMP" /></a>
+            <a href="https://us.norton.com/"><img src="7Z6XSNI3AOROS6GUNT5ZU3IALEPPNPAO.gif" alt="Norton" /></a>
+        </div>
+
+        <div style="text-align: center; color: #333333; margin-top: 10px !important; font-size: 11px;">
+            <p><i>Made by voblit | <a href="https://github.com/Voblit/voblit.github.io/">Source Code</a></i></p>
+        </div>
+    </div>
 
     <div id="celeste-wrapper" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); z-index:9999;">
-        <img id="celeste-sprite" src="" alt="Celeste">
+        <img id="celeste-sprite" src="" style="max-width:80vw; pointer-events:none; image-rendering:pixelated;" alt="Celeste" />
     </div>
     <audio id="madness-audio" src="Celes_crashout.wav"></audio>
 
     <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
-
     <script type="text/javascript">
-        // Global variables without let/const/var scoping discipline
-        cx = 'a2dd4a5697c854af6';
-        document.write('<script type="text/javascript" src="https://cse.google.com/cse.js?cx=' + cx + '"><\/script>');
-
-        P = [
-            { id: "py2ez80-1.2.1", t: "Py2ez80 1.2.1 brings concatenation", a: "Voblit", d: "August 2, 2026", p: "Another update comes to py2ez80...", c: "Another update comes to py2ez80, and this is a smaller one than the last, but still pretty cool. In this update, py2ez80 supports Concatenation of strings, where you take a print() function and are now able to join strings inside of it, like x = 'string' + ' string 2' or print('string' + x). This update hopes to bring more python functionality to the transpiler, making it more possible for people to port their own programs to it! Of course, we have a banner. <img width='851' height='315' alt='fourth_release' src='https://github.com/user-attachments/assets/6a1d9c7d-7fb7-4f5b-80a5-490691e0c685' /> The link can be found in the last post about py2ez80." },
-            { id: "py2ez80-release-one-two", t: "Release of py2ez80 1.2", a: "Voblit", d: "July 23, 2026", p: "I am happy to announce that a new version...", c: "I am happy to announce that a new version of my python to C (and then subsequently C to ASM using CEdev) transpiler has been updated to version 1.2. This version adds many new exciting features, such as the inclusion of a wizard, and flags for the transpiler. When launching the program without input or flags, instead of just doing nothing, now I added a whole wizard that automagically does the whole choosing setup for you! The py2ez80 tool allows for a practical subset of python to be eventually compiled to ez80 ASM. You can download it <a href='https://github.com/voblit/py2ez80'>here</a>.<br /><br /><img style='max-width:100%; height:auto;' alt='fourth_release' src='https://github.com/user-attachments/assets/cdaebf3c-58ec-4e7d-9dfa-2ad92e4f6b49' />" },
-            { id: "site-change", t: "Site Redesign!", a: "Voblit", d: "July 23, 2026", p: "A long awaited update to this honestly crummy site...", c: "After long last, I updated my personal site. I added a much cleaner UI, basing it off the ancient MaxCoderz forum, (thanks). Even added commenting..." }
+        // Global variables with atrocious names
+        var _0xKEY = 'a2dd4a5697c854af6';
+        var _DATA_ARR = [
+            { id: "py2ez80-1.2.1", title: "Py2ez80 1.2.1 brings concatenation", author: "Voblit", date: "August 2, 2026", preview: "Another update comes to py2ez80, and this is a smaller one than the last, but still pretty cool...", content: "Another update comes to py2ez80, and this is a smaller one than the last, but still pretty cool. In this update, py2ez80 supports Concatenation of strings, where you take a print() function and are now able to join strings inside of it, like x = 'string' + ' string 2' or print('string' + x). This update hopes to bring more python functionality to the transpiler, making it more possible for people to port their own programs to it! Of course, we have a banner. <img width='851' height='315' alt='fourth_release' src='https://github.com/user-attachments/assets/6a1d9c7d-7fb7-4f5b-80a5-490691e0c685' /> The link can be found in the last post about py2ez80." },
+            { id: "py2ez80-release-one-two", title: "Release of py2ez80 1.2", author: "Voblit", date: "July 23, 2026", preview: "I am happy to announce that a new version of my python to C (and then subsequently C to ASM using CEdev) transpiler has been updated...", content: "I am happy to announce that a new version of my python to C (and then subsequently C to ASM using CEdev) transpiler has been updated to version 1.2. This version adds many new exciting features, such as the inclusion of a wizard, and flags for the transpiler. When launching the program without input or flags, instead of just doing nothing, now I added a whole wizard that automagically does the whole choosing setup for you! The py2ez80 tool allows for a practical subset of python to be eventually compiled to ez80 ASM. You can download it <a href='https://github.com/voblit/py2ez80'>here</a>.<br /><br /><img style='max-width:100%; height:auto;' alt='fourth_release' src='https://github.com/user-attachments/assets/cdaebf3c-58ec-4e7d-9dfa-2ad92e4f6b49' />" },
+            { id: "site-change", title: "Site Redesign!", author: "Voblit", date: "July 23, 2026", preview: "A long awaited update to this honestly crummy site, made to look much better...", content: "After long last, I updated my personal site. I added a much cleaner UI, basing it off the ancient MaxCoderz forum, (thanks). Even added commenting..." }
         ];
 
-        function r() {
-            var H = window.location.hash.substring(1);
-            var FC = document.getElementById('posts-feed');
-            var SW = document.getElementById('search-results-wrapper');
-            var CB = document.getElementById('comments-box');
-            var HT = document.getElementById('box-header-title');
-            var CT = document.getElementById('cusdis_thread');
+        eval("(function() { var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = 'https://cse.google.com/cse.js?cx=' + _0xKEY; var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x); })();");
 
-            if (H.indexOf('search=') == 0) {
-                HT.innerHTML = "Search Results";
-                FC.style.display = 'none'; CB.style.display = 'none'; SW.style.display = 'block';
-                return;
-            }
+        function go_home() {
+            eval("window.location.hash = ''; do_render();");
+        }
 
-            FC.style.display = 'block'; SW.style.display = 'none';
+        function do_render() {
+            eval("var h = window.location.hash.replace('#', ''); var fc = document.getElementById('posts-feed'); var sw = document.getElementById('search-results-wrapper'); var cb = document.getElementById('comments-box'); var ht = document.getElementById('box-header-title'); var ct = document.getElementById('cusdis_thread'); if (h.indexOf('search=') === 0) { ht.innerText = 'Search Results'; fc.style.display = 'none'; cb.style.display = 'none'; sw.style.display = 'block'; } else { fc.style.display = 'block'; sw.style.display = 'none'; if (!!!(h == '')) { var p = null; for(var i=0; i<_DATA_ARR.length; i++) { if(_DATA_ARR[i].id == h) { p = _DATA_ARR[i]; break; } } if (p != null) { ht.innerText = 'Article'; fc.innerHTML = '<p style=\"margin-bottom: 10px;\"><a href=\"#\" onclick=\"javascript:eval(\\'go_home()\\'); return false;\">← Back to all posts</a></p><h1>' + p.title + '</h1><p class=\"subtitle\">Posted by <b>' + p.author + '</b> on ' + p.date + '</p><blockquote>' + p.content + '</blockquote>'; ct.setAttribute('data-page-id', p.id); ct.setAttribute('data-page-url', window.location.origin + window.location.pathname + '#' + p.id); ct.setAttribute('data-page-title', p.title); cb.style.display = 'block'; if (window.CUSDIS) { window.CUSDIS.renderTo(ct, { appId: 'c82e7596-fd27-4f37-8df8-d41bcc839982', host: 'https://cusdis.com', pageId: p.id, pageUrl: window.location.origin + window.location.pathname + '#' + p.id, pageTitle: p.title }); } return; } } ht.innerText = 'Home'; cb.style.display = 'none'; var str = ''; for(var j=0; j<_DATA_ARR.length; j++) { str += '<h1><a href=\"#' + _DATA_ARR[j].id + '\">' + _DATA_ARR[j].title + '</a></h1><p class=\"subtitle\">Posted by <b>' + _DATA_ARR[j].author + '</b> on ' + _DATA_ARR[j].date + '</p><blockquote>' + _DATA_ARR[j].preview + '</blockquote><p class=\"comments\"><a href=\"#' + _DATA_ARR[j].id + '\">Read Article & Comments →</a></p>'; if (j < _DATA_ARR.length - 1) str += '<hr />'; } fc.innerHTML = str; }");
+        }
 
-            if (H != '') {
-                for(var i=0; i<P.length; i++) {
-                    if (P[i].id == H) {
-                        HT.innerHTML = "Article";
-                        FC.innerHTML = '<p><a href="javascript:void(0)" onclick="window.location.hash=\'\';r();">← Back to all posts</a></p><h1>' + P[i].t + '</h1><p>Posted by <b>' + P[i].a + '</b> on ' + P[i].d + '</p><blockquote>' + P[i].c + '</blockquote>';
-                        CT.setAttribute('data-page-id', P[i].id);
-                        CT.setAttribute('data-page-url', window.location.href);
-                        CT.setAttribute('data-page-title', P[i].t);
-                        CB.style.display = 'block';
-                        if (window.CUSDIS) window.CUSDIS.renderTo(CT, { appId: 'c82e7596-fd27-4f37-8df8-d41bcc839982', host: 'https://cusdis.com', pageId: P[i].id, pageUrl: window.location.href, pageTitle: P[i].t });
-                        return;
-                    }
+        function do_search(e) {
+            if (e && e.preventDefault) e.preventDefault();
+            var q = document.getElementById('search-input').value.toLowerCase().trim();
+            var triggers = ['celes', 'ludenberg', 'celestia', 'celestia ludenberg'];
+            var found = false;
+            for(var k=0; k<triggers.length; k++) {
+                if (q.indexOf(triggers[k]) !== -1) {
+                    found = true;
+                    break;
                 }
             }
-
-            HT.innerHTML = "Home";
-            CB.style.display = 'none';
-            var html = '';
-            for(var i=0; i<P.length; i++) {
-                html += '<h1><a href="#' + P[i].id + '">' + P[i].t + '</a></h1><p>Posted by <b>' + P[i].a + '</b> on ' + P[i].d + '</p><blockquote>' + P[i].p + '</blockquote><p align="right"><a href="#' + P[i].id + '">Read Article & Comments →</a></p>';
-                if (i < P.length - 1) html += '<hr>';
-            }
-            FC.innerHTML = html;
-        }
-
-        function h(e) {
-            var q = document.getElementById('search-input').value.toLowerCase();
-            if (q.indexOf('celes') > -1 || q.indexOf('ludenberg') > -1) {
-                eval('crash()');
+            if (found === true) {
+                eval("run_crashout();");
                 return;
             }
-            window.location.hash = 'search=' + escape(q);
-            r();
-            if (window.google && window.google.search) {
-                google.search.cse.element.getElement('gsc-searchresults-only').execute(q);
-            }
+
+            window.location.hash = "search=" + encodeURIComponent(q);
+            do_render();
+
+            eval("if (window.google && window.google.search && window.google.search.cse && window.google.search.cse.element) { var el = google.search.cse.element.getElement('gsc-searchresults-only'); if (el) el.execute(q); }");
         }
 
-        function crash() {
-            var a = document.getElementById('madness-audio'), w = document.getElementById('celeste-wrapper'), s = document.getElementById('celeste-sprite');
-            var m = [[0,'C1.webp'],[1,'C2.webp'],[2,'C3.webp'],[3,'C4.webp'],[4,'C5.webp']];
-            a.currentTime = 0; a.play(); w.style.display = "block";
+        function run_crashout() {
+            var audio_el = document.getElementById('madness-audio');
+            var wrap_el = document.getElementById('celeste-wrapper');
+            var sprite_el = document.getElementById('celeste-sprite');
+            var map_arr = [[0,'C1.webp'],[1,'C2.webp'],[2,'C3.webp'],[3,'C4.webp'],[4,'C5.webp']];
             
-            // Crime: Global Polling Loop without cleanup guards
-            setInterval("eval('var c=m.filter(function(x){return a.currentTime>=x[0]}).pop(); if(c)s.src=c[1];')", 50);
-            a.onended = function() { w.style.display = "none"; };
+            audio_el.currentTime = 0;
+            audio_el.play();
+            wrap_el.style.display = "block";
+            sprite_el.classList.remove('shaking');
+
+            timer_id = setInterval(function() {
+                eval("var curr = null; for(var z=0; z<map_arr.length; z++) { if(audio_el.currentTime >= map_arr[z][0]) curr = map_arr[z]; } if(curr != null) sprite_el.src = curr[1]; if(audio_el.currentTime >= 4) sprite_el.classList.add('shaking');");
+            }, 50);
+
+            audio_el.onended = function() {
+                clearInterval(timer_id);
+                wrap_el.style.display = "none";
+                sprite_el.classList.remove('shaking');
+            };
         }
 
-        // Synchronous XHR Bad Practice
-        try {
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'https://api.github.com/repos/Voblit/voblit.github.io/commits/main', false); 
-            xhr.send(null);
-            if (xhr.status === 200) {
-                var data = eval('(' + xhr.responseText + ')');
-                document.getElementById('commit-date').innerText = new Date(data.commit.author.date).toLocaleDateString();
-            }
-        } catch(e) {
-            document.getElementById('commit-date').innerText = 'N/A';
+        function init_stuff() {
+            window.onhashchange = function() { eval("do_render();"); };
+            do_render();
+
+
+            var target_el = document.getElementById('commit-date');
+            var parse_date = function(d) { target_el.innerText = (new Date(d)).toLocaleDateString(); };
+
+            fetch('https://api.github.com/repos/Voblit/voblit.github.io/commits/main')
+                .then(function(res) {
+                    return res.json().then(function(json_data) {
+                        eval("parse_date(json_data.commit.author.date);");
+                    });
+                })
+                .catch(function() {
+                    fetch(window.location.href, { method: 'HEAD' })
+                        .then(function(head_res) {
+                            eval("parse_date(head_res.headers.get('date'));");
+                        })
+                        .catch(function() {
+                            target_el.innerText = 'N/A';
+                        });
+                });
         }
     </script>
 </body>
